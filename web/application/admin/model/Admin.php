@@ -13,7 +13,7 @@ class Admin extends Model
 		return $res ? $res : array();
 	}
 	
-	public function addAdmin($admin_name='', $password='', $mobile='S')
+	public function addAdmin($admin_name='', $password='', $mobile='')
 	{
 		return Db::execute('insert into admins (admin_name,password,mobile)values(?,?,?)',[$admin_name,md5($password),$mobile]);
 		
