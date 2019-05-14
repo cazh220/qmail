@@ -29,7 +29,7 @@
 </head>
 <body>
 <article class="cl pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-admin-add">
+	<form action="add" method="post" class="form form-horizontal" id="form-admin-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>栏目名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -41,9 +41,9 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 				<select class="select" name="category_id" size="1">
 					<option value="0">无</option>
-					<option value="1">咨询</option>
-					<option value="2">产品</option>
-					<option value="3">服务</option>
+					{volist name="top_category" id="category"}
+					<option value="{$category.id}">{$category.category_name}</option>
+					{/volist}
 				</select>
 				</span> </div>
 		</div>
@@ -90,12 +90,16 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
+			$(form).ajaxSubmit(function(){
+				var index = parent.layer.getFrameIndex(window.name);
 			parent.$('.btn-refresh').click();
 			parent.layer.close(index);
+			});
+			
+			
 		}
 	});
+	
 });
 </script>
 </body>

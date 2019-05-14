@@ -10,17 +10,29 @@ class Category extends Controller
 {
     public function index()
     {
+		$Category = model('Category');
+		$list = $Category->categoryList();
+		foreach($list as $k => $val)
+		{
+			$list[$k]['parent_name'] = $val['parent_id'] ? $Category->category_name($val['parent_id']) : '无';
+		}
+		
 		$view = new View();
+		$view->assign('category', $list);
 		return $view->fetch('admin/system-category');
     }
 
-    public function add()
+    public function add_cat()
     {
+		$Category = model('Category');
+		$topcategory = $Category->topCategory();
+
     	$view = new View();
+		$view->assign('top_category', $topcategory);
 		return $view->fetch('admin/system-category-add');
     }
 	
-	public function addCategory()
+	public function add()
 	{
 		$category_name	= input('category_name');
 		$parent_id		= input('category_id');
@@ -30,7 +42,8 @@ class Category extends Controller
 
 		$Category = model('Category');
 		$result= $Category->addCategory($category_name, $parent_id);
-echo 12;die;
+		
+		/*
 		if($result)
 		{
 			$this->index();
@@ -39,7 +52,13 @@ echo 12;die;
 		{
 			exit("<script>alert('添加失败！');window.location.href='index?".time()."';</script>");
 		}
+		*/
+	}
 
+	
+	public function categoryList()
+	{
+		
 	}
 	
 }
