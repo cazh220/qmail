@@ -23,26 +23,27 @@
 <script>DD_belatedPNG.fix('*');</script><![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加栏目 - 栏目管理</title>
+<title>编辑栏目 - 栏目管理</title>
 <meta name="keywords" content="{$Think.config.keywords}">
 <meta name="description" content="{$Think.config.description}">
 </head>
 <body>
 <article class="cl pd-20">
-	<form action="add" method="post" class="form form-horizontal" id="form-admin-add">
+	<form action="edit" method="post" class="form form-horizontal" id="form-admin-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>栏目名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="category_name" name="category_name">
+				<input type="text" class="input-text" value="{$data.category_name}" placeholder="" id="category_name" name="category_name">
 			</div>
 		</div>
 		<div class="row cl">
+			<input type="hidden" name="edit_category_id" value="{$data.id}">
 			<label class="form-label col-xs-4 col-sm-3">上级栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 				<select class="select" name="category_id" size="1">
 					<option value="0">无</option>
 					{volist name="top_category" id="category"}
-					<option value="{$category.id}">{$category.category_name}</option>
+					<option value="{$category.id}" {if $category.id == $data.parent_id}selected{/if}>{$category.category_name}</option>
 					{/volist}
 				</select>
 				</span> </div>
@@ -102,7 +103,7 @@ $(function(){
 				}
 				else
 				{
-					alert('添加失败');
+					alert('编辑失败');
 				}
 				
 			});

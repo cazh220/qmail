@@ -30,5 +30,21 @@ class Category extends Model
 		$res = Db::query("select *  from article_category where id = ?", [$category_id]);
 		return $res[0]['category_name'] ? $res[0]['category_name'] : array();
 	}
+	
+	public function delCategory($category_id)
+	{
+		return Db::execute('delete from article_category where id = ? or parent_id = ?',[$category_id,$category_id]);
+	}
+	
+	public function editCategory($id, $name, $parent_id=0)
+	{
+		return Db::execute('update article_category SET category_name = ?, parent_id = ?  where id = ? ',[$name,$parent_id,$id]);
+	}
+	
+	public function getCategory($id)
+	{
+		$res = Db::query("select *  from article_category where id = ?", [$id]);
+		return $res[0] ? $res[0] : array();
+	}
 
 }

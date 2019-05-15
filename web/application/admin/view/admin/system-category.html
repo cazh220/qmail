@@ -183,7 +183,7 @@
 							<td>{$list.id}</td>
 							<td>{$list.parent_name}</td>
 							<td class="text-l">{$list.category_name}</td>
-							<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="article_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14"><a title="编辑" href="javascript:;" onclick="article_category_edit('栏目编辑','categoryEdit?id={$list.id}',{$list.id},'700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="article_category_del(this,{$list.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 						{/volist}
 					</tbody>
@@ -210,14 +210,31 @@ function system_category_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 /*系统-栏目-编辑*/
-function system_category_edit(title,url,id,w,h){
+function article_category_edit(title,url,id,w,h){
 	layer_show(title,url,w,h);
 }
 /*系统-栏目-删除*/
-function system_category_del(obj,id){
+function article_category_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
+		$.ajax({
+			type: "POST",
+			url: "categoryDelete",
+			data: "id="+id,
+			dataType:"json",
+			success: function(msg){
+				if(msg.code == 1)
+				{
+					layer.msg('已删除!',{icon:1,time:1000});
+				}
+				else
+				{
+					alert(msg.msg);
+				}
+				
+			}
+		});
+		
 	});
 }
 </script>
