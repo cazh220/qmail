@@ -90,13 +90,20 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).ajaxSubmit(function(){
-				var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+			$(form).ajaxSubmit(function(msg){
+				var json = msg.parseJSON();
+				if(msg.code == 1)
+				{
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.$('.btn-refresh').click();
+					parent.layer.close(index);
+				}
+				else
+				{
+					alert('添加失败');
+				}
+				
 			});
-			
-			
 		}
 	});
 	

@@ -43,16 +43,14 @@ class Category extends Controller
 		$Category = model('Category');
 		$result= $Category->addCategory($category_name, $parent_id);
 		
-		/*
 		if($result)
 		{
-			$this->index();
+			exit(json_encode(array('code'=>1,'msg'=>'ok')));
 		}
 		else
 		{
-			exit("<script>alert('添加失败！');window.location.href='index?".time()."';</script>");
+			exit(json_encode(array('code'=>0,'msg'=>'添加失败')));
 		}
-		*/
 	}
 
 	
