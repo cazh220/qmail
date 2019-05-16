@@ -6,27 +6,27 @@ use think\Config;
 use think\Session;
 use think\View;
 
-class Article
+class Picture
 {
     public function index()
     {
-    	$Article = model('Article');
-    	$list = $Article->articleList();
+    	$Picture = model('Picture');
+		print_r(33);die;
+    	$list = $Picture->pictureList();
 
 		$view = new View();
 		$view->assign('list', $list);
-		return $view->fetch('admin/article-list');
+		return $view->fetch('admin/picture-list');
 	}
-	
-	public function addArticle()
+	/*
+	public function addPicture()
 	{
-		$Article = model('Article');
-		$category = $Article->categoryList();
-		$category_tree = $this->get_tree($category, 0);
+		$Picture = model('Picture');
+		$picture = $Picture->pictureList();
 
     	$view = new View();
-		$view->assign('category', $category_tree);
-		return $view->fetch('admin/article-add');
+		$view->assign('picture', $picture);
+		return $view->fetch('admin/picture-add');
 		
 	}
 
@@ -36,8 +36,8 @@ class Article
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
 
-		$Article = model('Article');
-		$result = $Article->addArticle($content, $category_id, $title);
+		$Picture = model('Picture');
+		$result = $Picture->addArticle($content, $category_id, $title);
 
 		if($result)
 		{
@@ -53,8 +53,8 @@ class Article
 	{
 		$id 			= !empty($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 
-		$Article = model('Article');
-    	$list = $Article->articleList($id);
+		$Picture = model('Picture');
+    	$list = $Picture->articleList($id);
 
     	$category = $Article->categoryList();
 		$category_tree = $this->get_tree($category, 0);
@@ -115,4 +115,5 @@ class Article
 	    }
 	    return $tree;
 	}
+	*/
 }

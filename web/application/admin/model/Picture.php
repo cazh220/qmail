@@ -5,12 +5,12 @@ use think\Model;
 use think\Db;
 use think\Paginator;
 
-class Article extends Model
+class Picure extends Model
 {
-
-	public function categoryList()
-	{
-		$res = Db::query("select *  from article_category where is_delete = ?", [0]);
+	/*
+	public function pictureListList()
+	{echo 123;die;
+		$res = Db::query("select *  from picture where is_delete = ?", [0]);
 		return $res ? $res : array();
 	}
 
@@ -78,5 +78,6 @@ class Article extends Model
 		$res = Db::query("select *  from article_category where id = ?", [$id]);
 		return $res[0] ? $res[0] : array();
 	}
+	*/
 
 }
