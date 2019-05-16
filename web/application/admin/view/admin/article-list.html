@@ -282,7 +282,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资讯','article-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
+				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资讯','addArticle')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
 				</span>
 			</div>
 			<div class="mt-20">
@@ -298,16 +298,18 @@
 						</tr>
 					</thead>
 					<tbody>
+						{volist name="list" id="data"}
 						<tr class="text-c">
-							<td>10001</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-							<td>行业动态</td>
-							<td>2014-6-11 11:11:42</td>
+							<td>{$data.id}</td>
+							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{$data.title}</u></td>
+							<td>{$data.category_name}</td>
+							<td>{$data.update_time}</td>
 							<td class="td-status"><span class="label label-success radius">已发布</span></td>
 							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','editArticle',{$data.id})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
+						{/volist}
 					</tbody>
 				</table>
 			</div>
@@ -342,7 +344,7 @@ function article_edit(title,url,id,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
-		content: url
+		content: url+'?id='+id
 	});
 	layer.full(index);
 }
