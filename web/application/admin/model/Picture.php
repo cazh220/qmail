@@ -5,14 +5,14 @@ use think\Model;
 use think\Db;
 use think\Paginator;
 
-class Picure extends Model
+class Picture extends Model
 {
-	/*
-	public function pictureListList()
-	{echo 123;die;
-		$res = Db::query("select *  from picture where is_delete = ?", [0]);
+	public function pictureList()
+	{
+		$res = Db::query("select *  from pictures where is_delete = ?", [0]);
 		return $res ? $res : array();
 	}
+
 
 	public function addArticle($content='', $category_id=0, $title='')
 	{
@@ -78,6 +78,6 @@ class Picure extends Model
 		$res = Db::query("select *  from article_category where id = ?", [$id]);
 		return $res[0] ? $res[0] : array();
 	}
-	*/
+	
 
 }

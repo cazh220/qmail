@@ -11,27 +11,24 @@ class Picture
     public function index()
     {
     	$Picture = model('Picture');
-		print_r(33);die;
     	$list = $Picture->pictureList();
 
 		$view = new View();
 		$view->assign('list', $list);
 		return $view->fetch('admin/picture-list');
 	}
-	/*
+	
 	public function addPicture()
 	{
-		$Picture = model('Picture');
-		$picture = $Picture->pictureList();
-
     	$view = new View();
-		$view->assign('picture', $picture);
 		return $view->fetch('admin/picture-add');
 		
 	}
 
 	public function add()
 	{
+		print_r($_REQUEST);die;
+
 		$category_id 	= !empty($_REQUEST['category_id']) ? intval($_REQUEST['category_id']) : 0;
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
@@ -49,6 +46,7 @@ class Picture
 		}
 	}
 
+	/*
 	public function editArticle()
 	{
 		$id 			= !empty($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
