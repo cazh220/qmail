@@ -53,16 +53,14 @@ CREATE TABLE `article_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章分类';
 
 
-CREATE TABLE `tb_data_menus` (
-  `data_menu_id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu_code` varchar(255) DEFAULT NULL COMMENT '菜单权限控制码',
-  `menu_name` varchar(255) DEFAULT NULL COMMENT '菜单名称',
-  `parent_id` int(11) DEFAULT NULL COMMENT '父类id  顶级菜单默认0',
-  `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除  0默认 1已删除',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`data_menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='数据中心系统--菜单表';
+CREATE TABLE `pictures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `url` varchar(500) DEFAULT NULL COMMENT '路径',
+  `type` tinyint(4) DEFAULT '0' COMMENT '类别',
+  `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

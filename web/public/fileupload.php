@@ -17,8 +17,6 @@
 #!! this file is just an example, it doesn't incorporate any security checks and
 #!! is not recommended to be used in production environment as it is. Be sure to
 #!! revise it and customize to your needs.
-file_put_contents('1.log', '22222', FILE_APPEND);
-print_r($_REQUEST);die;
 
 // Make sure file is not cached (as it happens for example on iOS devices)
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -81,6 +79,7 @@ if (isset($_REQUEST["name"])) {
 } else {
     $fileName = uniqid("file_");
 }
+$fileName = md5(time()).'.'.substr(strrchr($fileName, '.'), 1);;
 
 $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
 $uploadPath = $uploadDir . DIRECTORY_SEPARATOR . $fileName;
@@ -175,4 +174,5 @@ if ( $done ) {
 }
 
 // Return Success JSON-RPC response
-die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+//die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+exit(json_encode(array('status'=>1, 'msg'=>'success', 'file'=>$fileName)));
