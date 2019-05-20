@@ -12,6 +12,35 @@ class Picture extends Model
 		$res = Db::query("select *  from pictures where is_delete = ?", [0]);
 		return $res ? $res : array();
 	}
+	
+	public function picture($id)
+	{
+		$res = Db::query("select * from pictures where id = ?", [$id]);
+		return $res ? $res : array();
+	}
+	
+	public function addPictures($pictures=array())
+	{
+		return Db::name('pictures')->insertAll($pictures);
+	}
+	
+	public function deletePicture($id = 0)
+	{
+		return Db::execute('delete from pictures where id = ?',[$id]);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public function addArticle($content='', $category_id=0, $title='')

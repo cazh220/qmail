@@ -66,8 +66,79 @@ class Login extends Controller
 		
 		$Admin = model('Admin');
 		$result 	= $Admin->addAdmin($username, $password, $mobile);
-		var_dump($result);die;
+		if($result)
+		{
+			exit(json_encode(array('code'=>1, 'msg'=>'ok')));
+		}
+		else
+		{
+			exit(json_encode(array('code'=>0, 'msg'=>'fail')));
+		}
 	}
 	
+	
+	public function user()
+	{
+		//获取所有用户
+		$Admin = model('Admin');
+		$list = $Admin->getAdminList();
+		//print_r($list);die;
+		$view = new View();
+		$view->assign('list', $list);
+		return $view->fetch('admin/admin-list');
+	}
+	
+	public function addAdmin()
+	{
+		$view = new View();
+		return $view->fetch('admin/admin-add');
+	}
+	
+	public function adminStop()
+	{
+		$id	= input('id');
+		$is_delete	= input('is_delete');
+		
+		$Admin = model('Admin');
+		$result = $Admin->adminStop($id,$is_delete);
+		
+		if($result)
+		{
+			exit(json_encode(array('code'=>1, 'msg'=>'ok')));
+		}
+		else
+		{
+			exit(json_encode(array('code'=>0, 'msg'=>'fail')));
+		}
+	}
+	
+	public function adminDel()
+	{
+		$id	= input('id');
+		
+		$Admin = model('Admin');
+		$result = $Admin->adminDel($id);
+		
+		if($result)
+		{
+			exit(json_encode(array('code'=>1, 'msg'=>'ok')));
+		}
+		else
+		{
+			exit(json_encode(array('code'=>0, 'msg'=>'fail')));
+		}
+	} 
+	
+	public function editAdmin()
+	{
+		$id	= input('id');
+		
+		$Admin = model('Admin');
+		$result = $Admin->getadmin($id);
+		
+		$view = new View();
+		$view->assign('list', $result);
+		return $view->fetch('admin/admin-add');
+	}
 	
 }

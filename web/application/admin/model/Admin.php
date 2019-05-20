@@ -22,59 +22,29 @@ class Admin extends Model
 	
 	public function getAdminList($param = array())
 	{
-		$obj_data = $obj_data = Db::name('hg_admin_users');
+		$obj_data = $obj_data = Db::name('admins');
 		if (!empty($param['username']))
 		{
 			$obj_data = $obj_data->where('username', 'like', '%'.$param['username'].'%');
 		}
 		$obj_data = $obj_data->order('admin_id asc')->paginate();
-		
-		return $obj_data;
+		return $obj_data->toArray();
 	}
-	
-	
-	public function getAdmin($condition=array(), $order=0, $page=array())
+	 
+	public function adminStop($id, $status=0)
 	{
-		$where_ary = array();
-		//拼接参数
-		foreach($condition as $key => $val)
-		{
-			array_push($where_ary, $key."= :".$key);
-		}
-		$where_condition = implode(' AND ', $where_ary);
-		$order = " ORDER BY admin_id DESC";
-		if ($order=='1')
-		{
-			$order = " ORDER BY admin_id ASC";
-		}
-		$where_condition .= $order;
-		
-		if (!empty($page))
-		{
-			$start = $page['current_page'] - 1;
-			$page_size = $page['page_size'];
-			$start = ($start > 0) ? intval($start) : 0;
-			$limit = " LIMIT $start, $page_size";
-			$where_condition .= $limit;
-		}
-	
-		$res = Db::query("select *  from hg_admin_users where $where_condition", $condition);
-		return $res;
+		return Db::execute('update admins SET is_delete = ? where admin_id = ?',[$status,$id]);
 	}
 	
-	public function updateAdmin($param=array(), $where=array())
+	public function adminDel($id)
 	{
-		if (!empty($param) && !empty($where))
-		{
-			$set = $this->join2param($param, ',');
-			$where_condition = $this->join2param($where, 'AND');
-			$params = array_merge($param, $where);
-			//echo "update hg_admin_users set $set where $where_condition";print_r($params);die;
-			$res = Db::execute("update hg_admin_users set $set where $where_condition", $params);
-		}
-		
-		return $res==1 ? 1 : 0;
+		return Db::execute('delete from admins where admin_id = ?',[$id]);
 	}
 	
-
+	public function getAdmin($id)
+	{
+		$res = Db::query("select *  from admins where admin_id = ?", [$id]);
+		return $res ? $res : array();
+	}
+	
 }

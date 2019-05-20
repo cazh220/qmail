@@ -12,7 +12,15 @@ class Picture
     {
     	$Picture = model('Picture');
     	$list = $Picture->pictureList();
-
+		if($list)
+		{
+			foreach($list as $key => $val)
+			{
+				$list[$key]['type_name'] = ($val['type'] == 99) ? '幻灯片' : '默认';
+				$list[$key]['url']  = "http://qmail.com/upload/".$val['url'];
+			}
+		}
+		
 		$view = new View();
 		$view->assign('list', $list);
 		return $view->fetch('admin/picture-list');
@@ -27,67 +35,35 @@ class Picture
 
 	public function add()
 	{
-		print_r($_REQUEST);die;
-
-		$category_id 	= !empty($_REQUEST['category_id']) ? intval($_REQUEST['category_id']) : 0;
+		$pictures 		= !empty($_REQUEST['pictures']) ? trim($_REQUEST['pictures']) : '';
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
-		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
-
-		$Picture = model('Picture');
-		$result = $Picture->addArticle($content, $category_id, $title);
-
-		if($result)
+		$type 			= !empty($_REQUEST['type']) ? $_REQUEST['type'] : '';
+		if($pictures)
 		{
-			exit("<script>window.location.href='index';</script>");
+			$temp = explode(",", $pictures);
+			foreach($temp as $key => $val)
+			{
+				$data[$key] = array(
+					'title'			=> $key > 0 ? $title.$key : $title,
+					'type'			=> $type,
+					'url'			=> $val
+				);
+			}
+			$Picture = model('Picture');
+			$result = $Picture->addPictures($data);
+			if($result)
+			{
+				exit("<script>window.location.href='index';</script>");
+			}
 		}
-		else
-		{
-			exit("<script>alert('添加失败');</script>");
-		}
-	}
-
-	/*
-	public function editArticle()
-	{
-		$id 			= !empty($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-
-		$Picture = model('Picture');
-    	$list = $Picture->articleList($id);
-
-    	$category = $Article->categoryList();
-		$category_tree = $this->get_tree($category, 0);
-
-    	$view = new View();
-		$view->assign('category', $category_tree);
-		$view->assign('article', $list[0]);
-		return $view->fetch('admin/article-edit');		
-	}
-
-	public function edit()
-	{
-		$category_id 	= !empty($_REQUEST['category_id']) ? intval($_REQUEST['category_id']) : 0;
-		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
-		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
-
-		$id 	= !empty($_REQUEST['article_id']) ? intval($_REQUEST['article_id']) : 0;
-		$Article = model('Article');
-		$result = $Article->editArticle($content, $category_id, $title, $id);
-
-		if($result)
-		{
-			exit("<script>window.location.href='index';</script>");
-		}
-		else
-		{
-			exit("<script>alert('编辑失败');</script>");
-		}
+		exit("<script>alert('添加失败');</script>");
 	}
 	
 	public function delete()
 	{
 		$id 	= $_GET['id'];
-		$Article = model('Article');
-		$result = $Article->deleteArticle($id);
+		$Picture = model('Picture');
+		$result = $Picture->deletePicture($id);
 		if($result)
 		{
 			exit(json_encode(array('code'=>1, 'msg'=>'ok')));
@@ -97,21 +73,6 @@ class Picture
 			exit(json_encode(array('code'=>0, 'msg'=>'删除失败')));
 		}
 	}
+	
 
-
-	public function get_tree($data, $pid)
-	{
-	    $tree = array();
-	    foreach($data as $k => $v)
-	    {
-	      if($v['parent_id'] == $pid)
-	      {        
-	       //父亲找到儿子
-	       $v['children'] = $this->get_tree($data, $v['id']);
-	       $tree[] = $v;
-	      }
-	    }
-	    return $tree;
-	}
-	*/
 }
