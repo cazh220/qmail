@@ -50,6 +50,8 @@ return [
     'controller_suffix'      => false,
 	//host设置
 	'host_url'				 => 'http://qmail.com/',
+    
+    'static_url'             => 'http://qmail.com/static/index/',
 
     // +----------------------------------------------------------------------
     // | 模块设置

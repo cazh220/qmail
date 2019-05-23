@@ -9,7 +9,7 @@ class Home extends Model
 {	
 	public function getHuandengPian($param = array())
 	{
-		$res = Db::query("select *  from admins where admin_id = ?", [$id]);
+		$res = Db::query("select *  from pictures where type = 99");
 		return $res ? $res : array();
 	}
 	

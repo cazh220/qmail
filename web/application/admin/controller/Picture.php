@@ -17,7 +17,7 @@ class Picture
 			foreach($list as $key => $val)
 			{
 				$list[$key]['type_name'] = ($val['type'] == 99) ? '幻灯片' : '默认';
-				$list[$key]['url']  = "http://qmail.com/upload/".$val['url'];
+				$list[$key]['path']  = "http://qmail.com/upload/".$val['path'];
 			}
 		}
 		
@@ -38,6 +38,7 @@ class Picture
 		$pictures 		= !empty($_REQUEST['pictures']) ? trim($_REQUEST['pictures']) : '';
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$type 			= !empty($_REQUEST['type']) ? $_REQUEST['type'] : '';
+		$url 			= !empty($_REQUEST['url']) ? trim($_REQUEST['url']) : '';
 		if($pictures)
 		{
 			$temp = explode(",", $pictures);
@@ -46,7 +47,8 @@ class Picture
 				$data[$key] = array(
 					'title'			=> $key > 0 ? $title.$key : $title,
 					'type'			=> $type,
-					'url'			=> $val
+					'path'			=> $val,
+					'url'			=> $url
 				);
 			}
 			$Picture = model('Picture');
