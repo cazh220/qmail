@@ -13,4 +13,10 @@ class Home extends Model
 		return $res ? $res : array();
 	}
 	
+	public function getList()
+	{
+		$res = Db::query("select *  from product where is_delete = ?", [0]);
+		return $res ? $res : array();
+	}
+	
 }

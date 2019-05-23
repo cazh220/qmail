@@ -2,7 +2,7 @@
 namespace app\index\controller;
 
 use think\View;
-use app\model\Product;
+
 class Home
 {
 	public function index()
@@ -23,9 +23,9 @@ class Home
 				$pictures[$key]['show'] = 0;
 			}
 		}
-		$Product = model('Product');
-		$product = $Product->getList();
-		print_r($product);die;
+
+		$product = $Home->getList();
+		
 		$view = new View();
 		$view->assign('huandengpian', $pictures);
 		$view->assign('product', $product);
