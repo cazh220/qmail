@@ -247,4 +247,7 @@ return [
 	//SEO
 	'keywords'		=> '服务器',
 	'description'	=> '服务器mail',
+    'qq'            => '502677118',//默认系统QQ
+    'price'         => 751,//最低价格
+    'telphone'      => '400-800-1234',//客服电话
 ];

@@ -2,8 +2,8 @@
 <!-- saved from url=(0026)http://www.qqyouxiang.net/ -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <title>腾讯企业邮箱</title>
-<meta name="Keywords" content="">
-<meta name="Description" content="">
+<meta name="Keywords" content="{$Think.config.keywords}">
+<meta name="Description" content="{$Think.config.description}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
 
 <meta content="MSHTML 6.00.3790.4807" name="GENERATOR">
@@ -29,58 +29,58 @@
 
 <div id="navmenu">
 		<ul id="navi">
-		<li class="navhome"><a href="http://www.qqyouxiang.net/">网站首页</a></li>
+		<li class="navhome"><a href="/index/home/index">网站首页</a></li>
 		
 		<li>    
-		<a href="product_better.html" class="hover-none nav">产品介绍</a>
+		<a href="/index/product/index" class="hover-none nav">产品介绍</a>
 	
 			<ul>
 		
-				<li><a href="product_better.html">产品优势</a></li>
+				<li><a href="/index/product/index">产品优势</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/about/?16.html">详细功能</a></li>
+				<li><a href="/index/product/detail">详细功能</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/about/?17.html">整合方案</a></li>
+				<li><a href="/index/product/solution">整合方案</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?5_1.html">合作客户</a></li>
+				<li><a href="/index/customer/index">合作客户</a></li>
 			
 			</ul>
 	 
 			</li>
 		
 		<li>    
-		<a href="price_introduce.html" class="hover-none nav">价格介绍</a>
+		<a href="/index/price/index" class="hover-none nav">价格介绍</a>
 	
 			</li>
 		
 		<li>    
-		<a href="customer.html" class="hover-none nav">合作客户</a>
+		<a href="/index/customer/index" class="hover-none nav">合作客户</a>
 	
 			<ul>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?6_1.html">高等教育</a></li>
+				<li><a href="/index/customer/index">高等教育</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?7_1.html">金融保险</a></li>
+				<li><a href="/index/customer/baoxian">金融保险</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?15_1.html">政府组织</a></li>
+				<li><a href="/index/customer/gov">政府组织</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?8_1.html">生活服务</a></li>
+				<li><a href="/index/customer/life">生活服务</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?9_1.html">互联网</a></li>
+				<li><a href="/index/customer/internet">互联网</a></li>
 		
-				<li><a href="http://www.qqyouxiang.net/list/?132_1.html">生产制造</a></li>
+				<li><a href="/index/customer/create">生产制造</a></li>
 			
 			</ul>
 	 
 			</li>
 		
 		<li>    
-		<a href="common_question.html" class="hover-none nav">常见问题</a>
+		<a href="/index/Question/index" class="hover-none nav">常见问题</a>
 	
 			</li>
 		
 		<li>    
-		<a href="news.html" class="hover-none nav">新闻资讯</a>
+		<a href="/index/News/index" class="hover-none nav">新闻资讯</a>
 	
 			<ul>
 		
@@ -93,12 +93,12 @@
 			</li>
 		
 		<li>    
-		<a href="about.html" class="hover-none nav">关于我们</a>
+		<a href="/index/About/index" class="hover-none nav">关于我们</a>
 	
 			</li>
 		
 		<li>    
-		<a href="contact.html" class="hover-none nav">联系我们</a>
+		<a href="/index/Contact/index" class="hover-none nav">联系我们</a>
 	
 			</li>
 		
@@ -136,27 +136,27 @@
 			<div class="index_01_cc_t index_01_cc_t1"></div>
 			<dl>
 				<dt>{$product[0]['title']}</dt>
-				<dd>5用户、无限邮箱容量<br>32G个人中转站<br>5G企业网盘</dd>
+				<dd>{$product[0]['content']}</dd>
 			</dl>
-			<div class="index_01_cc_more"><a href="tencent://message/?uin=2239642488&Site=%E8%85%BE%E8%AE%AF%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1&Menu=yes" class="j-layer">立即购买</a></div>
+			<div class="index_01_cc_more"><a href="tencent://message/?uin={$Think.config.qq}&Site=%E8%85%BE%E8%AE%AF%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1&Menu=yes" class="j-layer">立即购买</a></div>
 		</div>
 		
 		<div class="index_01_cc left marle30px">
 			<div class="index_01_cc_t index_01_cc_t2"></div>
 			<dl>
-				<dt>￥7250元/年</dt>
-				<dd>50用户、无限邮箱容量<br>32G个人中转站<br>50G企业网盘</dd>
+				<dt>{$product[1]['title']}</dt>
+				<dd>{$product[1]['content']}</dd>
 			</dl>
-			<div class="index_01_cc_more"><a href="tencent://message/?uin=2239642488&Site=%E8%85%BE%E8%AE%AF%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1&Menu=yes" class="j-layer">立即购买</a></div>
+			<div class="index_01_cc_more"><a href="tencent://message/?uin={$Think.config.qq}&Site=%E8%85%BE%E8%AE%AF%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1&Menu=yes" class="j-layer">立即购买</a></div>
 		</div>
 		
 		<div class="index_01_cc right">
 			<div class="index_01_cc_t index_01_cc_t3"></div>
 			<dl>
-				<dt>￥26000元</dt>
-				<dd>200用户、无限邮箱容量<br>32G个人中转站<br>200G企业网盘</dd>
+				<dt>{$product[2]['title']}</dt>
+				<dd>{$product[2]['content']}</dd>
 			</dl>
-			<div class="index_01_cc_more"><a href="tencent://message/?uin=2239642488&Site=%E8%85%BE%E8%AE%AF%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1&Menu=yes" class="j-layer">立即购买</a></div>
+			<div class="index_01_cc_more"><a href="tencent://message/?uin={$Think.config.qq}&Site=%E8%85%BE%E8%AE%AF%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1&Menu=yes" class="j-layer">立即购买</a></div>
 		</div>
 		<div class="cl"></div>
 	</div>
@@ -196,10 +196,10 @@
 		</script>
 
 <!--计算器开始-->
-			<div class="compare_btm_container ng-scope" ng-app="myPrice" ng-init="num=0;price=750" style="text-align:center;">
+			<div class="compare_btm_container ng-scope" ng-app="myPrice" ng-init="num=0;price={$Think.config.price}" style="text-align:center;">
 					<!--<span class="index_logo_8"></span>-->
 					<div class="price_title">产品价格计算</div>
-					<div class="compare_price" style="font-size:18px;">专业安全的邮箱服务，最低仅需 <font style="font-size:28px; font-weight:bold; color:#08F;">750</font> 元/年，帐号越多，优惠更多</div>
+					<div class="compare_price" style="font-size:18px;">专业安全的邮箱服务，最低仅需 <font style="font-size:28px; font-weight:bold; color:#08F;">{$Think.config.price}</font> 元/年，帐号越多，优惠更多</div>
 					<!-- <div class="compare_num">我想要购买<input type="number" min="0" style="text-align: center" ng-model="num"/>个用户</div> -->
 					<span class="text" style="font-size:18px;">我想购买</span>
 					<span class="input" style="line-height: normal;">
@@ -219,7 +219,7 @@
 					<span style="font-size:18px;">元/年</span>
 <!-- 					<div class="compare_money">参考价格为:<span class="compare_money_num"><i style="padding: 0px 10px;font-style: normal;">{{num * price}}</i>元/每年</span></div> -->
 <div class="index_01_cc_more"><a href="http://www.qqyouxiang.net/about/?134.html" class="j-layer">了解价格</a></div><br>
-<span style="font-size:24px; font-weight:bold; color:#08F; margin-top:30px;">立即致电：400-863-0855</span>
+<span style="font-size:24px; font-weight:bold; color:#08F; margin-top:30px;">立即致电：{$Think.config.telphone}</span>
 			</div>
 		
 
@@ -307,7 +307,7 @@
 	</div>
 </div>
 <div class="ft cn1000" style="line-height:24px; padding-top:15px; padding-bottom:15px;">
-<p>地址：上海市闵行区联航路（浦江复地中心）1505号3号楼1206室</p>
+<p>地址：{$system.address}</p>
 <p></p>
 </div>
 
