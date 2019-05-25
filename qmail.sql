@@ -1,73 +1,102 @@
-﻿-- MySQL dump 10.13  Distrib 5.5.53, for Win32 (AMD64)
---
--- Host: localhost    Database: qmail
--- ------------------------------------------------------
--- Server version	5.5.53
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : 本地数据库
+ Source Server Type    : MySQL
+ Source Server Version : 50553
+ Source Host           : localhost:3306
+ Source Schema         : qmail
 
---
--- Table structure for table `admins`
---
+ Target Server Type    : MySQL
+ Target Server Version : 50553
+ File Encoding         : 65001
 
+ Date: 25/05/2019 17:02:35
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admins
+-- ----------------------------
 DROP TABLE IF EXISTS `admins`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `admins` (
+CREATE TABLE `admins`  (
   `admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `admin_name` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `mobile` varchar(20) NOT NULL,
-  `is_delete` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `admin_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`admin_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `admins`
---
-
-LOCK TABLES `admins` WRITE;
-/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES (1,'admin','96e79218965eb72c92a549dd5a330112','13011112222',0);
-/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-
-CREATE TABLE `article_category` (
+-- ----------------------------
+-- Table structure for article
+-- ----------------------------
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(200) NOT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
-  `is_delete` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章分类';
+  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` smallint(6) NOT NULL COMMENT '状态 0默认下架  1上架',
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
-
-CREATE TABLE `pictures` (
+-- ----------------------------
+-- Table structure for article_category
+-- ----------------------------
+DROP TABLE IF EXISTS `article_category`;
+CREATE TABLE `article_category`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL COMMENT '标题',
-  `url` varchar(500) DEFAULT NULL COMMENT '路径',
-  `type` tinyint(4) DEFAULT '0' COMMENT '类别',
-  `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `category_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章分类' ROW_FORMAT = Compact;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- ----------------------------
+-- Table structure for pictures
+-- ----------------------------
+DROP TABLE IF EXISTS `pictures`;
+CREATE TABLE `pictures`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '标题',
+  `path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '路径',
+  `url` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '链接',
+  `type` tinyint(4) DEFAULT 0 COMMENT '类别',
+  `is_delete` tinyint(4) DEFAULT 0 COMMENT '是否删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dump completed on 2019-05-12 23:36:44
+-- ----------------------------
+-- Table structure for product
+-- ----------------------------
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `is_delete` tinyint(4) DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for system
+-- ----------------------------
+DROP TABLE IF EXISTS `system`;
+CREATE TABLE `system`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `mobile` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `qq` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `price` int(10) DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+SET FOREIGN_KEY_CHECKS = 1;
