@@ -13,6 +13,13 @@ class News extends Base
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/company_news');
 	}
+	
+	public function yingxiao()
+	{
+		$view = new View();
+		$view->assign('system', Session::get('system_info'));
+		return $view->fetch('index/news_yingxiao');
+	}
 
 
 }
