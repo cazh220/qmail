@@ -9,8 +9,13 @@ class About extends Base
 {
 	public function index()
 	{
+		$Article = model('Article');
+		$list = $Article->getArticleList('关于我们');
+
 		$view = new View();
+		$view->assign('article', $list[0]);
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		return $view->fetch('index/about');
 	}
 

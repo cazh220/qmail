@@ -43,10 +43,22 @@
 				<select name="category_id" class="select">
 					<option value="0">全部栏目</option>
 					{volist name="category" id="list"}
-					<option value="{$list.id}">{$list.category_name}</option>
+						<option value="{$list.id}">{$list.category_name}</option>
+						{if condition="$list.children"}
+						{volist name="list.children" id="item"}
+							<option value="{$item.id}">&nbsp;&nbsp;∟{$item.category_name}</option>
+						{/volist}
+						{/if}
+					
 					{/volist}
 				</select>
 				</span> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red"></span>简介：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="brief" name="brief">
+			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">文章内容：</label>

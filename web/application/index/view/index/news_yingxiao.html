@@ -46,7 +46,7 @@ $(function() {
 </div>
 
 <div class="head cn1000">
-  <div class="logo left"><img src="{$Think.config.static_url}static/pic/201803231431496227.jpg" alt="腾讯企业邮箱-QQ企业邮箱" title="腾讯企业邮箱-QQ企业邮箱" height="94"></div>
+  <div class="logo left"><img src="{$Think.config.host_url}upload/{$top_left_picture.path}" alt="腾讯企业邮箱-QQ企业邮箱" title="腾讯企业邮箱-QQ企业邮箱" height="94"></div>
   <div class="tel right">
   	<dl>
     	
@@ -146,31 +146,13 @@ $(function() {
   </div>
 <script src="{$Think.config.static_url}static/js/subnav.js" type="text/javascript"></script> 
   <div class="wrapc">
-  
+	{volist name="article" id="list"}
     <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="http://www.qqyouxiang.net/content/?228.html" title="我的邮件会被系统自动删除吗？"><font color="#333333">我的邮件会被系统自动删除吗？</font></a></div>
-      <div class="nelc">一般情况下，邮件不会自动删除。但是如果您将邮件放在“已删除”邮件夹，系统会30天自动清除一次“已删除”邮件夹中的信件。另外，系统会30天自动清除一次“垃圾邮件”邮件夹中的信件。&nbsp;请注意：千万不要把您有用的信件放在“已删除”文件夹中。</div>
+   	  <div class="nelt"><span>2018-03-23</span><a href="/index/Question/detail?id={$list.article_id}" title="{$list.title}"><font color="#333333">{$list.title}</font></a></div>
+      <div class="nelc">{$list.brief}</div>
     </div>
+	{/volist}
 
-    <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="http://www.qqyouxiang.net/content/?227.html" title="发出去的邮件为什么被退回？"><font color="#333333">发出去的邮件为什么被退回？</font></a></div>
-      <div class="nelc">&#8205;&#8205;己方问题邮件的收件人地址错误是造成退信的主要原因。收件人的邮箱地址一般格式为name@domain.com，其中name为收件人的邮箱名，domain.com为收件人邮箱服务商的域名。这两部分中任何一部分填写错误都有可能造成退信。您可以按照以下步骤检查您填写的收件人地址：</div>
-    </div>
-
-    <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="http://www.qqyouxiang.net/content/?226.html" title="为什么常收不到邮件，白名单能帮助我吗？"><font color="#333333">为什么常收不到邮件，白名单能帮助我吗？</font></a></div>
-      <div class="nelc">收不到邮件的原因主要有以下两种：由于反垃圾将邮件拒收或者将邮件收入了垃圾箱；对方服务器由于网络等原因没有发送过来；第一种情况，通过设置白名单后可以保证解决收不到邮件的情况；但是，第二种情况则接收方无法解决，需要您尝试和对方邮箱服务提供商联系</div>
-    </div>
-
-    <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="http://www.qqyouxiang.net/content/?225.html" title="为什么设置白名单后，收到的垃圾邮件增多？"><font color="#333333">为什么设置白名单后，收到的垃圾邮件增多？</font></a></div>
-      <div class="nelc">垃圾邮件多种多样，对于您来说最可能的情况是：某网站有您需要接收的邮件，但是该网站又尝试扫号或者通过发送营销邮件推广，所以该网站的邮件会被严格进行反垃圾扫描，导致误封您的邮件。而设置白名单主要是防止反垃圾导致的误判垃圾邮件，所以设置后将不会对垃圾邮件进行检测，可能会导致垃圾邮件增多；</div>
-    </div>
-
-    <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="http://www.qqyouxiang.net/content/?224.html" title="为什么设置白名单后，仍然无法收到邮件？"><font color="#333333">为什么设置白名单后，仍然无法收到邮件？</font></a></div>
-      <div class="nelc">收不到邮件的另一个重要原因是：对方服务器由于网络或者其他自身原因没有把邮件发送过来；所以对于这种情况设置白名单仍然无法收到邮件。这种情况，可以和发件人联系一下，看看对方是否有收到退信信息，可以根据退信信息判断问题所在；如果没有退信，则需要和对方邮箱服务提供商联系或者与腾讯企业邮箱QQ在线客服联系。</div>
-    </div>
 
 <div id="fenye"><div class="pageNavi"><div class="wp-pagenavi"><span class="nolink">首页</span><span class="nolink">上一页</span><span><font color="red">1</font></span><span class="nolink">下一页</span><span class="nolink">尾页</span> 转到 <select name="select" onchange="var jmpURL=this.options[this.selectedIndex].value ; if(jmpURL!=&#39;&#39;) {window.location=jmpURL;} else {this.selectedIndex=0 ;}"><option value="?3_1.html" selected="selected">1</option></select></div></div></div>
   <div class="cl"></div>

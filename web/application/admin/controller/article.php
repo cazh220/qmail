@@ -23,7 +23,7 @@ class Article
 		$Article = model('Article');
 		$category = $Article->categoryList();
 		$category_tree = $this->get_tree($category, 0);
-
+		//print_r($category_tree);die;
     	$view = new View();
 		$view->assign('category', $category_tree);
 		return $view->fetch('admin/article-add');
@@ -34,10 +34,11 @@ class Article
 	{
 		$category_id 	= !empty($_REQUEST['category_id']) ? intval($_REQUEST['category_id']) : 0;
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
+		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
 
 		$Article = model('Article');
-		$result = $Article->addArticle($content, $category_id, $title);
+		$result = $Article->addArticle($content, $category_id, $title, $brief);
 
 		if($result)
 		{
@@ -70,10 +71,11 @@ class Article
 		$category_id 	= !empty($_REQUEST['category_id']) ? intval($_REQUEST['category_id']) : 0;
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
+		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
 
 		$id 	= !empty($_REQUEST['article_id']) ? intval($_REQUEST['article_id']) : 0;
 		$Article = model('Article');
-		$result = $Article->editArticle($content, $category_id, $title, $id);
+		$result = $Article->editArticle($content, $category_id, $title, $brief, $id);
 
 		if($result)
 		{

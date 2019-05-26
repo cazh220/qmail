@@ -14,25 +14,25 @@ class Article extends Model
 		return $res ? $res : array();
 	}
 
-	public function addArticle($content='', $category_id=0, $title='')
+	public function addArticle($content='', $category_id=0, $title='', $brief='')
 	{
-		return Db::execute('insert into article (title,category_id, content, status, update_time)values(?,?,?,?,?)',[$title,$category_id,$content,1, date("Y-m-d H:i:s")]);
+		return Db::execute('insert into article (title,category_id, content, status, brief, update_time)values(?,?,?,?,?,?)',[$title,$category_id,$content,1, $brief, date("Y-m-d H:i:s")]);
 	}
 
-	public function editArticle($content='', $category_id=0, $title='', $id = 0)
+	public function editArticle($content='', $category_id=0, $title='', $brief='', $id = 0)
 	{
-		return Db::execute('update article set title = ?,category_id = ?, content = ?, update_time = ? where id = ?',[$title,$category_id,$content, date("Y-m-d H:i:s"), $id]);
+		return Db::execute('update article set title = ?,category_id = ?, content = ?, update_time = ?, brief = ? where id = ?',[$title,$category_id,$content, date("Y-m-d H:i:s"), $brief, $id]);
 	}
 
 	public function articleList($id=0)
 	{
 		if($id)
 		{
-			$res = Db::query("select a.id,a.title,a.category_id,a.content,a.update_time,b.category_name from article a left join article_category b on a.category_id = b.id where a.id = ?", [$id]);
+			$res = Db::query("select a.id,a.title, a.brief, a.category_id,a.content,a.update_time,b.category_name from article a left join article_category b on a.category_id = b.id where a.id = ?", [$id]);
 		}
 		else
 		{
-			$res = Db::query("select a.id,a.title,a.category_id,a.content,a.update_time,b.category_name from article a left join article_category b on a.category_id = b.id");
+			$res = Db::query("select a.id,a.brief,a.title,a.category_id,a.content,a.update_time,b.category_name from article a left join article_category b on a.category_id = b.id");
 		}
 
 		return $res;

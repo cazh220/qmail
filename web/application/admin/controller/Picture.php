@@ -16,7 +16,19 @@ class Picture
 		{
 			foreach($list as $key => $val)
 			{
-				$list[$key]['type_name'] = ($val['type'] == 99) ? '幻灯片' : '默认';
+				$type_name = '';
+				switch($val['type'])
+				{
+					case 99:
+						$type_name = '幻灯片';break;
+					case 98:
+						$type_name = '顶部右侧公用图片';break;
+					case 97:
+						$type_name = '顶部左侧公用图片';break;
+					default:
+						$type_name = '默认';
+				}
+				$list[$key]['type_name'] = $type_name;
 				$list[$key]['path']  = "http://qmail.com/upload/".$val['path'];
 			}
 		}
@@ -48,7 +60,8 @@ class Picture
 					'title'			=> $key > 0 ? $title.$key : $title,
 					'type'			=> $type,
 					'path'			=> $val,
-					'url'			=> $url
+					'url'			=> $url,
+					'create_time'	=> date("Y-m-d H:i:s", time())
 				);
 			}
 			$Picture = model('Picture');

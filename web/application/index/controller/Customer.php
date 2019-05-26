@@ -10,6 +10,7 @@ class Customer extends Base
 	public function index()
 	{
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer');
 	}
@@ -17,6 +18,7 @@ class Customer extends Base
 	public function baoxian()
 	{
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer_baoxian');
 	}
@@ -24,6 +26,7 @@ class Customer extends Base
 	public function gov()
 	{
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer_gov');
 	}
@@ -31,6 +34,7 @@ class Customer extends Base
 	public function life()
 	{
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer_life');
 	}
@@ -38,6 +42,7 @@ class Customer extends Base
 	public function internet()
 	{
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer_internet');
 	}
@@ -45,6 +50,7 @@ class Customer extends Base
 	public function create()
 	{
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer_create');
 	}

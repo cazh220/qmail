@@ -29,6 +29,7 @@ class Home extends Base
 		$product = $Home->getList();
 		
 		$view = new View();
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('huandengpian', $pictures);
 		$view->assign('product', $product);
 		$view->assign('system', Session::get('system_info'));

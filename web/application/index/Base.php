@@ -13,8 +13,12 @@ class Base
 {
 	public function __construct()
 	{
-		$data = Db::query("select * from system where id = 1");
+		$data = Db::query("select * from system limit 1");
 		Session::set('system_info',$data[0]);
+		
+		//顶部左侧图片
+		$pic = Db::query("select * from pictures where type = 97 limit 1");
+		Session::set('top_left_picture',$pic[0]);
 	}
 
 }
