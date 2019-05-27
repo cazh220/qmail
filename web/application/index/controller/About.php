@@ -13,7 +13,7 @@ class About extends Base
 		$list = $Article->getArticleList('关于我们');
 
 		$view = new View();
-		$view->assign('article', $list[0]);
+		$view->assign('article', !empty($list[0]) ? $list[0] : array());
 		$view->assign('system', Session::get('system_info'));
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		return $view->fetch('index/about');

@@ -6,7 +6,7 @@ use think\Config;
 use think\Session;
 use think\View;
 
-class Article
+class Article extends Controller
 {
     public function index()
     {

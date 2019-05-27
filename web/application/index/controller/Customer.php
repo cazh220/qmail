@@ -9,7 +9,11 @@ class Customer extends Base
 {
 	public function index()
 	{
+		$Article = model('Article');
+		$list = $Article->getArticleList('高等教育');
+
 		$view = new View();
+		$view->assign('article', $list);
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/customer');

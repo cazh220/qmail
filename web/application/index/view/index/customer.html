@@ -153,111 +153,17 @@ $(function() {
   </div>
 <script src="{$Think.config.static_url}static/js/subnav.js" type="text/javascript"></script> 
   <div class="wrapc lpc">
-  
+{if  $article}  
+{volist name="article" id="list"}
 <dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?223.html" title="中央财经大学"><img original="{$Think.config.static_url}static/pic/customer/201803231525473588.jpg" src="{$Think.config.static_url}static/pic/customer/201803231525473588.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?223.html" title="中央财经大学"><font color="#333333">中央财经大学</font></a></dt>
+  <dd><a href="http://www.qqyouxiang.net/content/?223.html" title="{$list.title}"><img original="{$Think.config.static_url}static/pic/customer/201803231525473588.jpg" src="{$Think.config.static_url}static/pic/customer/201803231525473588.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
+   <dt><a href="http://www.qqyouxiang.net/content/?223.html" title="{$list.title}"><font color="#333333">{$list.title}</font></a></dt>
 </dl>
+{/volist}
+{else}
+sorry, 暂无内容！
+{/if}
 
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?222.html" title="中山大学"><img original="{$Think.config.static_url}static/pic/customer/201803231523153619.jpg" src="{$Think.config.static_url}static/pic/customer/201803231523153619.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?222.html" title="中山大学"><font color="#333333">中山大学</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?221.html" title="南京大学"><img original="{$Think.config.static_url}static/pic/customer/201803231522597295.jpg" src="{$Think.config.static_url}static/pic/customer/201803231522597295.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?221.html" title="南京大学"><font color="#333333">南京大学</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?220.html" title="北京外国语大学"><img original="{$Think.config.static_url}static/pic/customer/20180323152217968.jpg" src="{$Think.config.static_url}static/pic/customer/20180323152217968.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?220.html" title="北京外国语大学"><font color="#333333">北京外国语大学</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?219.html" title="众安在线"><img original="{$Think.config.static_url}static/pic/customer/201803231519356187.jpg" src="{$Think.config.static_url}static/pic/customer/201803231519356187.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?219.html" title="众安在线"><font color="#333333">众安在线</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?218.html" title="广发基金"><img original="{$Think.config.static_url}static/pic/customer/201803231519138203.jpg" src="{$Think.config.static_url}static/pic/customer/201803231519138203.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?218.html" title="广发基金"><font color="#333333">广发基金</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?217.html" title="&#8203;富途证券"><img original="{$Think.config.static_url}static/pic/customer/20180323151854187.jpg" src="{$Think.config.static_url}static/pic/customer/20180323151854187.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?217.html" title="&#8203;富途证券"><font color="#333333">&#8203;富途证券</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?216.html" title="中国金融在线"><img original="{$Think.config.static_url}static/pic/customer/201803231518325021.jpg" src="{$Think.config.static_url}static/pic/customer/201803231518325021.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?216.html" title="中国金融在线"><font color="#333333">中国金融在线</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?215.html" title="中国国际贸易促进委员会"><img original="{$Think.config.static_url}static/pic/customer/201803231517383838.jpg" src="{$Think.config.static_url}static/pic/customer/201803231517383838.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?215.html" title="中国国际贸易促进委员会"><font color="#333333">中国国际贸易促进委员会</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?214.html" title="武汉市民之家"><img original="{$Think.config.static_url}static/pic/customer/201803231517197230.jpg" src="{$Think.config.static_url}static/pic/customer/201803231517197230.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?214.html" title="武汉市民之家"><font color="#333333">武汉市民之家</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?213.html" title="山东海事局"><img original="{$Think.config.static_url}static/pic/customer/201803231516332580.jpg" src="{$Think.config.static_url}static/pic/customer/201803231516332580.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?213.html" title="山东海事局"><font color="#333333">山东海事局</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?212.html" title="福建省地震局监测中心"><img original="{$Think.config.static_url}static/pic/customer/201803231516082605.jpg" src="{$Think.config.static_url}static/pic/customer/201803231516082605.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?212.html" title="福建省地震局监测中心"><font color="#333333">福建省地震局监测中心</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?211.html" title="&#8203;深圳报业集团"><img original="{$Think.config.static_url}static/pic/customer/201803231514108917.jpg" src="{$Think.config.static_url}static/pic/customer/201803231514108917.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?211.html" title="&#8203;深圳报业集团"><font color="#333333">&#8203;深圳报业集团</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?210.html" title="&#8203;7天连锁酒店集团"><img original="{$Think.config.static_url}static/pic/customer/201803231513439934.jpg" src="{$Think.config.static_url}static/pic/customer/201803231513439934.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?210.html" title="&#8203;7天连锁酒店集团"><font color="#333333">&#8203;7天连锁酒店集团</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?209.html" title="&#8203;江苏省广播电视集团有限责任公司"><img original="{$Think.config.static_url}static/pic/customer/20180323151321704.jpg" src="{$Think.config.static_url}static/pic/customer/20180323151321704.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?209.html" title="&#8203;江苏省广播电视集团有限责任公司"><font color="#333333">&#8203;江苏省广播电视集团有限责任公司</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?208.html" title="广东广州日报传媒股份有限公司"><img original="{$Think.config.static_url}static/pic/customer/201803231512569631.jpg" src="{$Think.config.static_url}static/pic/customer/201803231512569631.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?208.html" title="广东广州日报传媒股份有限公司"><font color="#333333">广东广州日报传媒股份有限公司</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?207.html" title="小红书"><img original="{$Think.config.static_url}static/pic/customer/201803231512213881.jpg" src="{$Think.config.static_url}static/pic/customer/201803231512213881.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?207.html" title="小红书"><font color="#333333">小红书</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?206.html" title="蘑菇街"><img original="{$Think.config.static_url}static/pic/customer/201803231511591146.jpg" src="{$Think.config.static_url}static/pic/customer/201803231511591146.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?206.html" title="蘑菇街"><font color="#333333">蘑菇街</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?205.html" title="拉卡拉"><img original="{$Think.config.static_url}static/pic/customer/201803231511353990.jpg" src="{$Think.config.static_url}static/pic/customer/201803231511353990.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?205.html" title="拉卡拉"><font color="#333333">拉卡拉</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?204.html" title="58同城"><img original="{$Think.config.static_url}static/pic/customer/201803231511107457.jpg" src="{$Think.config.static_url}static/pic/customer/201803231511107457.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?204.html" title="58同城"><font color="#333333">58同城</font></a></dt>
-</dl>
-
-<dl>
-  <dd><a href="http://www.qqyouxiang.net/content/?203.html" title="新希望集团有限公司"><img original="{$Think.config.static_url}static/pic/customer/201803231510166500.jpg" src="{$Think.config.static_url}static/pic/customer/201803231510166500.jpg" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="http://www.qqyouxiang.net/content/?203.html" title="新希望集团有限公司"><font color="#333333">新希望集团有限公司</font></a></dt>
-</dl>
 
 <div id="fenye"><div class="pageNavi"><div class="wp-pagenavi"><span class="nolink">首页</span><span class="nolink">上一页</span><span><font color="red">1</font></span><a href="http://www.qqyouxiang.net/list/?5_2.html">2</a><a href="http://www.qqyouxiang.net/list/?5_2.html">下一页</a><a href="http://www.qqyouxiang.net/list/?5_2.html">尾页</a> 转到 <select name="select" onchange="var jmpURL=this.options[this.selectedIndex].value ; if(jmpURL!=&#39;&#39;) {window.location=jmpURL;} else {this.selectedIndex=0 ;}"><option value="?5_1.html" selected="selected">1</option><option value="?5_2.html">2</option></select></div></div></div>
   <div class="cl"></div>
