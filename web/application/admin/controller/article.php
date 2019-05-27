@@ -36,9 +36,10 @@ class Article extends Controller
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
+		$thumb_pic		= !empty($_REQUEST['thumb_pic']) ? $_REQUEST['thumb_pic'] : '';
 
 		$Article = model('Article');
-		$result = $Article->addArticle($content, $category_id, $title, $brief);
+		$result = $Article->addArticle($content, $category_id, $title, $brief, $thumb_pic);
 
 		if($result)
 		{
@@ -72,10 +73,11 @@ class Article extends Controller
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
 		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
+		$thumb_pic 		= !empty($_REQUEST['thumb_pic']) ? trim($_REQUEST['thumb_pic']) : '';
 
 		$id 	= !empty($_REQUEST['article_id']) ? intval($_REQUEST['article_id']) : 0;
 		$Article = model('Article');
-		$result = $Article->editArticle($content, $category_id, $title, $brief, $id);
+		$result = $Article->editArticle($content, $category_id, $title, $brief, $thumb_pic, $id);
 
 		if($result)
 		{

@@ -14,14 +14,14 @@ class Article extends Model
 		return $res ? $res : array();
 	}
 
-	public function addArticle($content='', $category_id=0, $title='', $brief='')
+	public function addArticle($content='', $category_id=0, $title='', $brief='', $thumb_Pic = '')
 	{
-		return Db::execute('insert into article (title,category_id, content, status, brief, update_time)values(?,?,?,?,?,?)',[$title,$category_id,$content,1, $brief, date("Y-m-d H:i:s")]);
+		return Db::execute('insert into article (title,category_id, content, status, brief, update_time, thumb_pic)values(?,?,?,?,?,?,?)',[$title,$category_id,$content,1, $brief, date("Y-m-d H:i:s"), $thumb_pic]);
 	}
 
-	public function editArticle($content='', $category_id=0, $title='', $brief='', $id = 0)
+	public function editArticle($content='', $category_id=0, $title='', $brief='', $thumb_pic='', $id = 0)
 	{
-		return Db::execute('update article set title = ?,category_id = ?, content = ?, update_time = ?, brief = ? where id = ?',[$title,$category_id,$content, date("Y-m-d H:i:s"), $brief, $id]);
+		return Db::execute('update article set title = ?,category_id = ?, content = ?, update_time = ?, brief = ?, thumb_pic = ? where id = ?',[$title,$category_id,$content, date("Y-m-d H:i:s"), $brief, $thumb_pic, $id]);
 	}
 
 	public function articleList($id=0)
