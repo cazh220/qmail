@@ -62,7 +62,7 @@ class Customer extends Base
 	public function detail()
 	{
 		$id = $_GET['id'];
-		$category_name = $_GET['category_name'];
+		$category_name = $_GET['category'];
 		$Article = model('Article');
 		$detail = $Article->articleDetail($id);
 		//print_r($detail);die;
