@@ -28,11 +28,11 @@ class Article extends Model
 	{
 		if($id)
 		{
-			$res = Db::query("select a.id,a.title, a.brief, a.category_id,a.content,a.update_time,b.category_name from article a left join article_category b on a.category_id = b.id where a.id = ?", [$id]);
+			$res = Db::query("select a.id,a.title, a.brief, a.category_id,a.content,a.update_time,b.category_name,a.thumb_pic from article a left join article_category b on a.category_id = b.id where a.id = ?", [$id]);
 		}
 		else
 		{
-			$res = Db::query("select a.id,a.brief,a.title,a.category_id,a.content,a.update_time,b.category_name from article a left join article_category b on a.category_id = b.id");
+			$res = Db::query("select a.id,a.brief,a.title,a.category_id,a.content,a.update_time,b.category_name,a.thumb_pic from article a left join article_category b on a.category_id = b.id");
 		}
 
 		return $res;

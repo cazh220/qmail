@@ -12,7 +12,7 @@ class Article extends Controller
     {
     	$Article = model('Article');
     	$list = $Article->articleList();
-
+    	
 		$view = new View();
 		$view->assign('list', $list);
 		return $view->fetch('admin/article-list');
