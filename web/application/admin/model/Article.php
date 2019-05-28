@@ -14,7 +14,7 @@ class Article extends Model
 		return $res ? $res : array();
 	}
 
-	public function addArticle($content='', $category_id=0, $title='', $brief='', $thumb_Pic = '')
+	public function addArticle($content='', $category_id=0, $title='', $brief='', $thumb_pic = '')
 	{
 		return Db::execute('insert into article (title,category_id, content, status, brief, update_time, thumb_pic)values(?,?,?,?,?,?,?)',[$title,$category_id,$content,1, $brief, date("Y-m-d H:i:s"), $thumb_pic]);
 	}

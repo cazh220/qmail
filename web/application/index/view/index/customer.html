@@ -156,8 +156,8 @@ $(function() {
 {if  $article}  
 {volist name="article" id="list"}
 <dl>
-  <dd><a href="/index/Customer/detail?id={$list.id}&category={$list.category_name}" title="{$list.title}"><img original="{$list.thumb_pic}" src="{$list.thumb_pic}" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
-   <dt><a href="/index/Customer/detail?id={$list.id}&category={$list.category_name}" title="{$list.title}"><font color="#333333">{$list.title}</font></a></dt>
+  <dd><a href="/index/Customer/detail?id={$list.article_id}&category={$list.category_name}" title="{$list.title}"><img original="{$list.thumb_pic}" src="{$list.thumb_pic}" width="266" height="170" style="display: inline; border:1px #EEE solid;"></a></dd>
+   <dt><a href="/index/Customer/detail?id={$list.article_id}&category={$list.category_name}" title="{$list.title}"><font color="#333333">{$list.title}</font></a></dt>
 </dl>
 {/volist}
 {else}

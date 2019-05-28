@@ -62,13 +62,15 @@ class Customer extends Base
 	public function detail()
 	{
 		$id = $_GET['id'];
+		$category_name = $_GET['category_name'];
 		$Article = model('Article');
 		$detail = $Article->articleDetail($id);
-		print_r($detail);die;
+		//print_r($detail);die;
 		$list = array();
 		$view = new View();
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('article', $detail[0]);
+		$view->assign('category_name', $category_name);
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/common_question_detail');
 	}
