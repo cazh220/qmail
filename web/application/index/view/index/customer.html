@@ -137,21 +137,20 @@ $(function() {
   <div class="wrapnav" id="subnavi">
   	<ul>
     
-    	<li class="subnavon"><a href="/index/Customer/index">高等教育</a></li>
+    	<li {if $category eq '高等教育'}class="subnavon"{/if}><a href="/index/Customer/index">高等教育</a></li>
      
-    	<li><a href="/index/Customer/baoxian">金融保险</a></li>
+    	<li {if $category eq '金融保险'}class="subnavon"{/if}><a href="/index/Customer/baoxian">金融保险</a></li>
      
-    	<li><a href="/index/Customer/gov">政府组织</a></li>
+    	<li {if $category eq '政府组织'}class="subnavon"{/if}><a href="/index/Customer/gov">政府组织</a></li>
      
-    	<li><a href="/index/Customer/life">生活服务</a></li>
+    	<li {if $category eq '生活服务'}class="subnavon"{/if}><a href="/index/Customer/life">生活服务</a></li>
      
-    	<li><a href="/index/Customer/internet">互联网</a></li>
+    	<li {if $category eq '互联网'}class="subnavon"{/if}><a href="/index/Customer/internet">互联网</a></li>
      
-    	<li><a href="/index/Customer/create">生产制造</a></li>
+    	<li {if $category eq '生产制造'}class="subnavon"{/if}><a href="/index/Customer/create">生产制造</a></li>
      
     </ul>
   </div>
-<script src="{$Think.config.static_url}static/js/subnav.js" type="text/javascript"></script> 
   <div class="wrapc lpc">
 {if  $article}  
 {volist name="article" id="list"}
