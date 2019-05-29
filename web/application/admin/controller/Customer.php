@@ -14,8 +14,16 @@ class Customer extends Controller
 		$view->assign('admin_name', Session::get('admin_name'));
 		
 		//$view->assign('admin', $admin);
-		return $view->fetch('admin/customer');
+		return $view->fetch('admin/customer_list');
     }
+	
+	public function addCustomer()
+	{
+		$view = new View();
+		$view->assign('admin_name', Session::get('admin_name'));
+		
+		return $view->fetch('admin/customer_add');
+	}
 
 	
 	
