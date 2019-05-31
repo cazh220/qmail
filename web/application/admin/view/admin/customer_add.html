@@ -29,7 +29,7 @@
 </head>
 <body>
 <article class="cl pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+	<form action="add" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -63,7 +63,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户数：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="uers_num" id="uers_num">
+				<input type="text" class="input-text" placeholder="" name="users_num" id="uers_num">
 			</div>
 		</div>
 		<div class="row cl">
@@ -148,10 +148,21 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+			$(form).ajaxSubmit(function(msg){
+				
+				var obj = JSON.parse(msg);
+				if(obj.code == 1)
+				{
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.$('.btn-refresh').click();
+					parent.layer.close(index);
+				}
+				else
+				{
+					alert(obj.msg);
+				}
+				
+			});
 		}
 	});
 });
