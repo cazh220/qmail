@@ -19,6 +19,7 @@ class Category extends Controller
 		
 		$view = new View();
 		$view->assign('category', $list);
+		$view->assign('admin_name', Session::get('admin_name'));
 		return $view->fetch('admin/system-category');
     }
 

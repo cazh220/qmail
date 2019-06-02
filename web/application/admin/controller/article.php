@@ -10,11 +10,23 @@ class Article extends Controller
 {
     public function index()
     {
+		$title = !empty($_GET['title']) ? trim($_GET['title']) : '';
+		$category_id = !empty($_GET['category']) ? trim($_GET['category']) : '';
+		
+		$Article = model('Article');
+		$category = $Article->categoryList();
+		$category_tree = $this->get_tree($category, 0);
+		//print_r($category_tree);die;
     	$Article = model('Article');
-    	$list = $Article->articleList();
+    	$list = $Article->articleList(0,$category_id,$title);
     	
 		$view = new View();
+		$view->assign('category_tree', $category_tree);
 		$view->assign('list', $list);
+		$view->assign('title', $title);
+		$view->assign('admin_name', Session::get('admin_name'));
+		$view->assign('category_id', $category_id);
+		$view->assign('count', count($list));
 		return $view->fetch('admin/article-list');
 	}
 	

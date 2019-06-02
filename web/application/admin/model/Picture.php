@@ -7,9 +7,9 @@ use think\Paginator;
 
 class Picture extends Model
 {
-	public function pictureList()
+	public function pictureList($title='')
 	{
-		$res = Db::query("select *  from pictures where is_delete = ?", [0]);
+		$res = Db::query("select *  from pictures where is_delete = ? and title LIKE '%".$title."%'", [0]);
 		return $res ? $res : array();
 	}
 	

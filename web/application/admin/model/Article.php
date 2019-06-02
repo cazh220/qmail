@@ -24,7 +24,7 @@ class Article extends Model
 		return Db::execute('update article set title = ?,category_id = ?, content = ?, update_time = ?, brief = ?, thumb_pic = ? where id = ?',[$title,$category_id,$content, date("Y-m-d H:i:s"), $brief, $thumb_pic, $id]);
 	}
 
-	public function articleList($id=0)
+	public function articleList($id=0, $category=0, $title='')
 	{
 		if($id)
 		{
@@ -32,7 +32,18 @@ class Article extends Model
 		}
 		else
 		{
-			$res = Db::query("select a.id,a.brief,a.title,a.category_id,a.content,a.update_time,b.category_name,a.thumb_pic from article a left join article_category b on a.category_id = b.id");
+			$sql = "select a.id,a.brief,a.title,a.category_id,a.content,a.update_time,b.category_name,a.thumb_pic from article a left join article_category b on a.category_id = b.id where 1";
+			if($category)
+			{
+				$sql .= " and a.category_id = ".$category;
+			}
+			if($title)
+			{
+				$sql .= " and a.title like '%".$title."%'";
+			}
+			//echo $sql;die;
+			$res = Db::query($sql);
+			
 		}
 
 		return $res;

@@ -23,79 +23,72 @@
 <script>DD_belatedPNG.fix('*');</script><![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加用户 - H-ui.admin v3.0</title>
+<title>客户详情</title>
 <meta name="keywords" content="{$Think.config.keywords}">
 <meta name="description" content="{$Think.config.description}">
 </head>
 <body>
 <article class="cl pd-20">
-	<form action="add" method="post" class="form form-horizontal" id="form-member-add">
+	<form action="edit" method="post" class="form form-horizontal" id="form-member-add">
+		<input type="hidden" name="customer_id" value="{$customer.id}"/>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="username" name="username">
+				{$customer.name}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>微信号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="weixin" name="weixin">
+				{$customer.weixin}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>qq：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="qq" name="qq">
+				{$customer.qq}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="mobile" name="mobile">
+				{$customer.mobile}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="@" name="email" id="email">
+				{$customer.email}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户数：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="users_num" id="uers_num">
+				{$customer.users_num}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>到期时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="end_time" id="end_time">
+				{$customer.end_time}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">使用情况：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="uses_info" cols="" rows="" class="textarea"  placeholder="使用情况" onKeyUp="textarealength(this,100)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+				{$customer.uses_info}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">跟踪情况：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="track_info" cols="" rows="" class="textarea"  placeholder="跟踪情况" onKeyUp="textarealength(this,100)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+				{$customer.track_info}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="note" cols="" rows="" class="textarea"  placeholder="跟单人员备注" onKeyUp="textarealength(this,100)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
-			</div>
-		</div>
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+				{$customer.note}
 			</div>
 		</div>
 	</form>

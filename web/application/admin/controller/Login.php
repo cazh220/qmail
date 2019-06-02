@@ -85,6 +85,7 @@ class Login extends Controller
 		//print_r($list);die;
 		$view = new View();
 		$view->assign('list', $list);
+		$view->assign('admin_name', Session::get('admin_name'));
 		return $view->fetch('admin/admin-list');
 	}
 	

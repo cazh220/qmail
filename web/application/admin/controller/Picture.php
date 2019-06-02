@@ -10,8 +10,9 @@ class Picture
 {
     public function index()
     {
+		$title = !empty($_GET['title']) ? trim($_GET['title']): '';
     	$Picture = model('Picture');
-    	$list = $Picture->pictureList();
+    	$list = $Picture->pictureList($title);
 		if($list)
 		{
 			foreach($list as $key => $val)
@@ -35,6 +36,9 @@ class Picture
 		
 		$view = new View();
 		$view->assign('list', $list);
+		$view->assign('title', $title);
+		$view->assign('count', count($list));
+		$view->assign('admin_name', Session::get('admin_name'));
 		return $view->fetch('admin/picture-list');
 	}
 	

@@ -14,6 +14,7 @@ class Product extends Controller
 		$list = $Product->getList();
 		
 		$view = new View();
+		$view->assign('admin_name', Session::get('admin_name'));
 		$view->assign('list', $list);
 		return $view->fetch('admin/product_list');
     }

@@ -17,10 +17,11 @@ class Index extends Controller
 		}
 		$Admin = model('Admin');
 		
+		$system = array('company'=>12,'tel'=>2121,'mobile'=>'502677118','email'=>'cah@121.com','address'=>'地址','price'=>28,'qq'=>2);
 		
 		$view = new View();
 		$view->assign('admin_name', Session::get('admin_name'));
-		//$view->assign('admin', $admin);
+		$view->assign('system', $system);
 		return $view->fetch('admin/index');
     }
 	
