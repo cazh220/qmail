@@ -15,13 +15,13 @@ class Index extends Controller
 			header("Content-type:text/html;charset=utf-8");
             exit("<script>alert('请登录');window.location.href='../login/login?".time()."';</script>");
 		}
-		$Admin = model('Admin');
-		
-		$system = array('company'=>12,'tel'=>2121,'mobile'=>'502677118','email'=>'cah@121.com','address'=>'地址','price'=>28,'qq'=>2);
+		$System = model('System');
+		$list = $System->getSystem();
+		//print_r($list);die;
 		
 		$view = new View();
 		$view->assign('admin_name', Session::get('admin_name'));
-		$view->assign('system', $system);
+		$view->assign('system', $list[0]);
 		return $view->fetch('admin/index');
     }
 	
@@ -56,15 +56,15 @@ class Index extends Controller
 
 		$System = model('System');
 
-		$result = $System->save($data);
+		$result = $System->saveSystem($data);
 
 		if($result)
 		{
-			exit(array('code'=>));
+			exit(json_encode(array('code'=>1, 'msg'=>'success')));
 		}
 		else
 		{
-
+			exit(json_encode(array('code'=>0, 'msg'=>'保存失败')));
 		}
 
 	}

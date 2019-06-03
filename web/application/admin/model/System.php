@@ -7,8 +7,15 @@ use think\Paginator;
 
 class System extends Model
 {
-	public function save($data)
+	public function saveSystem($data)
 	{
-		return Db::execute('update system SET company = ?, tel = ?, mobile = ?, email = ?, address = ?, qq = ?, price = ?  where id = 1 ',[$data['name'],$data['tel'],$data['mobile'], $data['email'], $data['address'], $data['qq'], $data['price']);
+		//print_r($data);die;
+		return Db::execute('update system SET company = ?, tel = ?, mobile = ?, email = ?, address = ?, qq = ?, price = ?  where id = 1 ',[$data['name'],$data['tel'],$data['mobile'], $data['email'], $data['address'], $data['qq'], $data['price']]);
+	}
+	
+	public function getSystem()
+	{
+		$res = Db::query("select * from system where id = 1");
+		return $res ? $res : array();
 	}
 }

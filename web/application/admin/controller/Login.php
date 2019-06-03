@@ -142,4 +142,10 @@ class Login extends Controller
 		return $view->fetch('admin/admin-add');
 	}
 	
+	public function logout()
+	{
+		session(null);
+		echo "<script>alert('退出成功');window.location.href='login'</script>";
+	}
+	
 }
