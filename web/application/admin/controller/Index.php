@@ -32,5 +32,41 @@ class Index extends Controller
         exit("<script>window.location.href='../login/login?".time()."';</script>");
 	}
 	
+
+	public function save()
+	{
+		$name = !empty($_GET['name']) ? trim($_GET['name']) : '';
+		$tel = !empty($_GET['tel']) ? trim($_GET['tel']) : '';
+		$mobile = !empty($_GET['mobile']) ? trim($_GET['mobile']) : '';
+		$email = !empty($_GET['email']) ? trim($_GET['email']) : '';
+		$address = !empty($_GET['address']) ? trim($_GET['address']) : '';
+		$qq = !empty($_GET['qq']) ? trim($_GET['qq']) : '';
+		$price = !empty($_GET['price']) ? intval($_GET['price']) : 0;
+
+
+		$data = array(
+			'name'		=> $name,
+			'tel'		=> $tel,
+			'mobile'	=> $mobile,
+			'email'		=> $email,
+			'address'	=> $address,
+			'qq'		=> $qq,
+			'price'		=> $price
+			);
+
+		$System = model('System');
+
+		$result = $System->save($data);
+
+		if($result)
+		{
+			exit(array('code'=>));
+		}
+		else
+		{
+
+		}
+
+	}
 	
 }

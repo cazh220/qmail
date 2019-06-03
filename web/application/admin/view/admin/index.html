@@ -130,31 +130,34 @@
 				<tbody>
 					<tr>
 						<th width="30%">公司名称</th>
-						<td><span id="company_name">{$system.company}</span></td>
+						<td><span id="company_name"><input class="input-text" type="text" id="_company_name" value="{$system.company}"></span></td>
 			</tr>
 					<tr>
 						<td>联系电话</td>
-						<td><span id="tel">{$system.tel}</span></td>
+						<td><span id="tel"><input class="input-text" type="text" id="_tel" value="{$system.tel}"></span></td>
 			</tr>
 					<tr>
 						<td>手机</td>
-						<td><span id="mobile">{$system.mobile}</span></td>
+						<td><span id="mobile"><input class="input-text" type="text" id="_mobile" value="{$system.mobile}"></span></td>
 			</tr>
 					<tr>
 						<td>邮箱</td>
-						<td><span id="email">{$system.email}</span></td>
+						<td><span id="email"><input class="input-text" type="text" id="_email" value="{$system.email}"></span></td>
 			</tr>
 					<tr>
 						<td>地址</td>
-						<td><span id="address">{$system.address}</span></td>
+						<td><span id="address"><input class="input-text" type="text" id="_address" value="{$system.address}"></span></td>
 			</tr>
 					<tr>
 						<td>QQ </td>
-						<td><span id="qq">{$system.qq}</span></td>
+						<td><span id="qq"><input class="input-text" type="text" id="_qq" value="{$system.qq}"></span></td>
 			</tr>
 					<tr>
 						<td>参考价</td>
-						<td><span id="price">{$system.price}</span></td>
+						<td><span id="price"><input class="input-text" type="text" id="_price" value="{$system.price}"></span></td>
+			</tr>
+			<tr>
+						<td colspan="2" style="text-align:center"><input type="button" id="save" value="保存"></td>
 			</tr>
 		</tbody>
 	</table>
@@ -174,11 +177,39 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
 $(function(){
-	$("#company_name").click(function(){
-		var company = $(this).html();
-		//alert(company);
-		$(this).html("<input type='text' id='_company_name' value='"+company+"'>");
+	$("#save").click(function(){
+		var name = $("#_company_name").val();
+		var tel = $("#_tel").val();
+		var mobile = $("#_mobile").val();
+		var email = $("#_email").val();
+		var address = $("#_address").val();
+		var qq = $("#_qq").val();
+		var price = $("#_price").val();
+
+
+		$.ajax({
+			type: 'GET',
+			url: 'save?name='+name+'&tel='+tel+'&mobile='+mobile+'&email='+email+'&address='+address+'&qq='+qq+'&price='+price,
+			dataType: 'json',
+			success: function(data){
+				if(data.code == 1)
+				{
+					//$(obj).parents("tr").remove();
+					//layer.msg('已删除!',{icon:1,time:1000});
+				}
+				else
+				{
+					alert(data.msg);
+				}
+				
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});	
 	});
+
+	
 });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
