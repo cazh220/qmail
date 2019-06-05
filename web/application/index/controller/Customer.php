@@ -17,6 +17,7 @@ class Customer extends Base
 		$view->assign('article', $list);
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer');
 	}
 
@@ -30,6 +31,7 @@ class Customer extends Base
 		$view->assign('category', '金融保险');
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer');
 	}
 
@@ -43,6 +45,7 @@ class Customer extends Base
 		$view->assign('category', '政府组织');
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer');
 	}
 
@@ -56,6 +59,7 @@ class Customer extends Base
 		$view->assign('category', '生活服务');
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer');
 	}
 
@@ -69,6 +73,7 @@ class Customer extends Base
 		$view->assign('category', '互联网');
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer');
 	}
 
@@ -82,6 +87,7 @@ class Customer extends Base
 		$view->assign('category', '生产制造');
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer');
 	}
 
@@ -98,6 +104,7 @@ class Customer extends Base
 		$view->assign('article', $detail[0]);
 		$view->assign('category', $category_name);
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/customer_detail');
 	}
 

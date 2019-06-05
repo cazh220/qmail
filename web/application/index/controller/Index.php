@@ -16,6 +16,7 @@ class Login
     		//print_r(Config::get('host'));die;
 	        $view = new View();
 			$view->assign('top_left_picture', Session::get('top_left_picture'));
+			$view->assign('qrcode', Session::get('top_left_picture'));
 			$view->assign('menu', Session::get('menu'));
 			$view->assign('username', Session::get('username'));
 			return $view->fetch('index');

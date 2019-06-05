@@ -41,6 +41,8 @@ class Article extends Model
 			{
 				$sql .= " and a.title like '%".$title."%'";
 			}
+
+			$sql .= " order by a.id desc";
 			//echo $sql;die;
 			$res = Db::query($sql);
 			
@@ -55,6 +57,7 @@ class Article extends Model
 	}
 
 
+	/*
 	public function addCategory($category_name='', $parent_id='')
 	{
 		return Db::execute('insert into article_category (category_name,parent_id)values(?,?)',[$category_name,$parent_id]);
@@ -89,5 +92,5 @@ class Article extends Model
 		$res = Db::query("select *  from article_category where id = ?", [$id]);
 		return $res[0] ? $res[0] : array();
 	}
-
+	*/
 }

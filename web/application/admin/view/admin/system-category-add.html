@@ -92,13 +92,11 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit(function(msg){
 				var obj = JSON.parse(msg);
-				
 				if(obj.code == 1)
 				{
+					parent.window.location.href='index';
 					var index = parent.layer.getFrameIndex(window.name);
-					parent.$('.btn-refresh').click();
 					parent.layer.close(index);
-					location.reload();
 				}
 				else
 				{

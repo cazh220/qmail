@@ -26,6 +26,8 @@ class Picture
 						$type_name = '顶部右侧公用图片';break;
 					case 97:
 						$type_name = '顶部左侧公用图片';break;
+					case 96:
+						$type_name = '联系二维码';break;
 					default:
 						$type_name = '默认';
 				}
@@ -72,10 +74,12 @@ class Picture
 			$result = $Picture->addPictures($data);
 			if($result)
 			{
-				exit("<script>window.location.href='index';</script>");
+				exit(json_encode(array('code'=>1, 'msg'=>'success')));
+				//exit("<script>window.location.href='index';</script>");
 			}
 		}
-		exit("<script>alert('添加失败');</script>");
+		exit(json_encode(array('code'=>0, 'msg'=>'添加失败')));
+		//exit("<script>alert('添加失败');</script>");
 	}
 	
 	public function delete()

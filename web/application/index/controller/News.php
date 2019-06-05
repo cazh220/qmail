@@ -16,6 +16,7 @@ class News extends Base
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('article', $list);
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		return $view->fetch('index/company_news');
 	}
 	
@@ -27,6 +28,7 @@ class News extends Base
 		$view = new View();
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('article', $list);
+		$view->assign('qrcode', Session::get('qrcode'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/news_yingxiao');
 	}

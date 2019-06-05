@@ -14,6 +14,7 @@ class Contact extends Base
 		
 		$view = new View();
 		$view->assign('article', !empty($list[0]) ? $list[0] : array());
+		$view->assign('qrcode', Session::get('qrcode'));
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
 		return $view->fetch('index/contact');

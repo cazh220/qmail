@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="page-container">
-	<form action="add" class="form form-horizontal" id="form-article-add">
+	<form action="add" class="form form-horizontal" id="form-pic-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片标题：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -40,12 +40,12 @@
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-				<select name="type" class="select">
+				<select id="type" name="type" class="select">
 					<option value="0">默认</option>
 					<option value="97">顶部左侧公用图片</option>
 					<option value="98">顶部右侧公用图片</option>
 					<option value="99">首页幻灯片</option>
-					
+					<option value="96">联系的二维码</option>
 
 				</select>
 				</span>
@@ -85,7 +85,7 @@
 		<br>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+				<button onClick="pic_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -108,6 +108,42 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="{$Think.config.host_url}static/admin/lib/webuploader/0.1.5/webuploader.min.js"></script> 
 <script type="text/javascript">
+
+function pic_save_submit()
+{
+    var pictures = $("#pictures").val();
+    var title = $("#title").val();
+    var type = $("#type").val();
+    var url = $("#url").val();
+
+    $.ajax({
+            type: "get",
+            url: "add",
+            data: "pictures="+pictures+'&title='+title+'&type='+type+'&url='+url,
+            dataType:"json",
+            success: function(msg){
+                if(msg.code == 1)
+                {
+                    parent.window.location.href='index';
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else
+                {
+                    alert(msg.msg);
+                }
+                
+            }
+        });
+    
+}
+
+function layer_close()
+{
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);
+}
+
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -269,7 +305,7 @@ $(function(){
             swf: 'lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: 'http://qmail.com/fileupload.php',
+            server: '{$Think.config.host_url}fileupload.php',
 			multiple: false,
             // runtimeOrder: 'flash',
 
@@ -278,6 +314,9 @@ $(function(){
                 extensions: 'gif,jpg,jpeg,bmp,png',
                 mimeTypes: 'image/*'
             },
+            resize: false,
+            crop: false,
+            compress:false,
 
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
             disableGlobalDnd: true,
@@ -379,7 +418,7 @@ $(function(){
                         img = $('<img src="'+src+'">');
                         $wrap.empty().append( img );
                     } else {alert(2);
-                        $.ajax('http://qmail.com/preview.php', {
+                        $.ajax('{$Think.config.host_url}preview.php', {
                             method: 'POST',
                             data: src,
                             dataType:'json'

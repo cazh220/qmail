@@ -32,43 +32,43 @@
 	<form action="edit" method="post" class="form form-horizontal" id="form-member-add">
 		<input type="hidden" name="customer_id" value="{$customer.id}"/>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+			<label class="form-label col-xs-4 col-sm-3">用户名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.name}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>微信号：</label>
+			<label class="form-label col-xs-4 col-sm-3">微信号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.weixin}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>qq：</label>
+			<label class="form-label col-xs-4 col-sm-3">qq：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.qq}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+			<label class="form-label col-xs-4 col-sm-3">手机：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.mobile}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
+			<label class="form-label col-xs-4 col-sm-3">邮箱：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.email}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户数：</label>
+			<label class="form-label col-xs-4 col-sm-3">用户数：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.users_num}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>到期时间：</label>
+			<label class="form-label col-xs-4 col-sm-3">到期时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				{$customer.end_time}
 			</div>
@@ -112,51 +112,6 @@ $(function(){
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
-	});
-	
-	$("#form-member-add").validate({
-		rules:{
-			username:{
-				required:true,
-				minlength:2,
-				maxlength:16
-			},
-			sex:{
-				required:true,
-			},
-			mobile:{
-				required:true,
-				isMobile:true,
-			},
-			email:{
-				required:true,
-				email:true,
-			},
-			uploadfile:{
-				required:true,
-			},
-			
-		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-		submitHandler:function(form){
-			$(form).ajaxSubmit(function(msg){
-				
-				var obj = JSON.parse(msg);
-				if(obj.code == 1)
-				{
-					var index = parent.layer.getFrameIndex(window.name);
-					parent.$('.btn-refresh').click();
-					parent.layer.close(index);
-				}
-				else
-				{
-					alert(obj.msg);
-				}
-				
-			});
-		}
 	});
 });
 </script> 

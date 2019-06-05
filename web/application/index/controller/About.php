@@ -15,6 +15,7 @@ class About extends Base
 		$view = new View();
 		$view->assign('article', !empty($list[0]) ? $list[0] : array());
 		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		return $view->fetch('index/about');
 	}

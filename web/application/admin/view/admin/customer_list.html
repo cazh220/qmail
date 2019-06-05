@@ -136,7 +136,9 @@
 							<th width="130">邮箱</th>
 							<th width="60">用户数</th>
 							<th width="70">到期时间</th>
-							<th width="">使用情况</th>
+							<th width="200">使用情况</th>
+							<th width="200">跟踪情况</th>
+							<th width="">备注</th>
 							<th width="70">操作</th>
 						</tr>
 					</thead>
@@ -152,6 +154,8 @@
 							<td class="text-l">{$item.users_num}</td>
 							<td>{$item.end_time}</td>
 							<td class="td-status"><span class="label label-success radius">{$item.uses_info}</span></td>
+							<td class="td-status"><span class="label label-danger radius">{$item.track_info}</span></td>
+							<td class="td-status"><span class="label label-info radius">{$item.note}</span></td>
 							<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','editCustomer',{$item.id},'','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a><a title="删除" href="javascript:;" onclick="member_del(this,{$item.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 						{/volist}

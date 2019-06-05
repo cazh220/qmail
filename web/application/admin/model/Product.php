@@ -29,4 +29,9 @@ class Product extends Model
 		return $res ? $res : array();
 	}
 
+	public function delProduct($id)
+	{
+		return Db::execute('delete from product where id = ?',[$id]);
+	}
+
 }

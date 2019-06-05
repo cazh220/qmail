@@ -58,7 +58,7 @@ class Login extends Controller
 	{
 		$username	= input('username');
 		$password	= input('password');
-		$mobile 	= input('mobile');
+		$mobile 	= input('phone');
 
 		$username 	= !empty($username) ? addslashes(trim($username)) : '';
 		$password 	= !empty($password) ? addslashes(trim($password)) : '';

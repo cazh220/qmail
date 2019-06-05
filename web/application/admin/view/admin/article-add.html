@@ -40,7 +40,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="category_id" class="select">
+				<select name="category_id" id="category_id" class="select">
 					<option value="0">全部栏目</option>
 					{volist name="category" id="list"}
 						<option value="{$list.id}">{$list.category_name}</option>
@@ -74,7 +74,7 @@
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</
+				<button onClick="add();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -98,9 +98,42 @@
 <script type="text/javascript" src="{$Think.config.host_url}static/admin/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
 <script type="text/javascript" src="{$Think.config.host_url}static/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
-function article_save_submit()
+
+function add()
 {
-	$("#form-article-add").submit();
+	var ue = UE.getEditor('editor');
+	var content = ue.getContent(); 
+	var category_id = $("#category_id").val();
+	var title = $("#title").val();
+	var brief = $("#brief").val();
+	var thumb_pic = $("#thumb_pic").val();
+
+	$.ajax({
+            type: "post",
+            url: "add",
+            data: "category_id="+category_id+'&title='+title+'&brief='+brief+'&thumb_pic='+thumb_pic+'&editorValue='+content,
+            dataType:"json",
+            success: function(msg){
+                if(msg.code == 1)
+                {
+                    parent.window.location.href='index';
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else
+                {
+                    alert(msg.msg);
+                }
+                
+            }
+        });
+	
+}
+
+function removeIframe()
+{
+	var index = parent.layer.getFrameIndex(window.name);
+	parent.layer.close(index);
 }
 
 $(function(){

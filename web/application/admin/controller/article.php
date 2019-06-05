@@ -19,7 +19,7 @@ class Article extends Controller
 		//print_r($category_tree);die;
     	$Article = model('Article');
     	$list = $Article->articleList(0,$category_id,$title);
-    	
+
 		$view = new View();
 		$view->assign('category_tree', $category_tree);
 		$view->assign('list', $list);
@@ -55,11 +55,13 @@ class Article extends Controller
 
 		if($result)
 		{
-			exit("<script>window.location.href='index';</script>");
+			//exit("<script>window.location.href='index';</script>");
+			exit(json_encode(array('code'=>1, 'msg'=>'success')));
 		}
 		else
 		{
-			exit("<script>alert('添加失败');</script>");
+			exit(json_encode(array('code'=>0, 'msg'=>'添加失败')));
+			//exit("<script>alert('添加失败');</script>");
 		}
 	}
 
@@ -93,11 +95,13 @@ class Article extends Controller
 
 		if($result)
 		{
-			exit("<script>window.location.href='index';</script>");
+			//exit("<script>window.location.href='index';</script>");
+			exit(json_encode(array('code'=>1, 'msg'=>'success')));
 		}
 		else
 		{
-			exit("<script>alert('编辑失败');</script>");
+			exit(json_encode(array('code'=>0, 'msg'=>'编辑失败')));
+			//exit("<script>alert('编辑失败');</script>");
 		}
 	}
 	

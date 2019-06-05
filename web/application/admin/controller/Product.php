@@ -85,5 +85,22 @@ class Product extends Controller
 			exit(json_encode(array('code'=>0,'msg'=>'编辑失败')));
 		}
 	}
+
+	public function productDelete()
+	{
+		$id	= input('id');
+
+		$Product = model('Product');
+		$result= $Product->delProduct($id);
+		
+		if($result)
+		{
+			exit(json_encode(array('code'=>1,'msg'=>'ok')));
+		}
+		else
+		{
+			exit(json_encode(array('code'=>0,'msg'=>'删除失败')));
+		}
+	}
 	
 }

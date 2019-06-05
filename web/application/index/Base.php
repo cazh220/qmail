@@ -19,6 +19,10 @@ class Base
 		//顶部左侧图片
 		$pic = Db::query("select * from pictures where type = 97 limit 1");
 		Session::set('top_left_picture',$pic[0]);
+
+		//二维码
+		$qrc = Db::query("select * from pictures where type = 96 limit 1");
+		Session::set('qrcode',$qrc[0]);
 	}
 
 }
