@@ -1,195 +1,126 @@
--- MySQL dump 10.13  Distrib 5.5.53, for Win32 (AMD64)
---
--- Host: localhost    Database: qmail
--- ------------------------------------------------------
--- Server version	5.5.53
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : 本地数据库
+ Source Server Type    : MySQL
+ Source Server Version : 50553
+ Source Host           : localhost:3306
+ Source Schema         : qmail
 
---
--- Table structure for table `admins`
---
+ Target Server Type    : MySQL
+ Target Server Version : 50553
+ File Encoding         : 65001
 
+ Date: 05/06/2019 17:35:34
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admins
+-- ----------------------------
 DROP TABLE IF EXISTS `admins`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `admins` (
+CREATE TABLE `admins`  (
   `admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `admin_name` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `mobile` varchar(20) NOT NULL,
-  `is_delete` tinyint(4) NOT NULL DEFAULT '0',
+  `admin_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`admin_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `admins`
---
-
-LOCK TABLES `admins` WRITE;
-/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES (7,'admin','96e79218965eb72c92a549dd5a330112','',0);
-/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `article`
---
-
+-- ----------------------------
+-- Table structure for article
+-- ----------------------------
 DROP TABLE IF EXISTS `article`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `article` (
+CREATE TABLE `article`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `category_id` int(11) NOT NULL,
-  `content` text NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `brief` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '简介',
   `status` smallint(6) NOT NULL COMMENT '状态 0默认下架  1上架',
   `update_time` datetime NOT NULL,
-  `brief` varchar(2000) NOT NULL,
+  `thumb_pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '缩略图',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `article`
---
-
-LOCK TABLES `article` WRITE;
-/*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (9,'我怎样阻止某个发件人继续向我的邮箱发送邮件？',7,'<p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑, Arial, Verdana; font-size: 12px;\">将要阻止的发件人邮箱地址设置在黑名单中，系统会自动拒收他的来信，以后就不会收到此人的邮件了。</span></p>',1,'2019-05-25 21:47:21','将要阻止的发件人邮箱地址设置在黑名单中，系统会自动拒收他的来信，以后就不会收到此人的邮件了。'),(10,'彩色主题在哪里显示？',7,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">“彩色主题”是一个能让您发出的邮件更个性化的功能。通过设置不同颜色的主题，让邮件在接收人的收件箱中更“抢眼”。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">当对方接收到此类邮件时，会在邮件列表中看到彩色的主题。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">此功能仅支持QQ邮箱，域名邮箱，腾讯企业邮箱之间的用户往来邮件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\"><br/></p><p><br/></p>',1,'2019-05-25 21:48:20','“彩色主题”是一个能让您发出的邮件更个性化的功能。通过设置不同颜色的主题，让邮件在接收人的收件箱中更“抢眼”。当对方接收到此类邮件时，会在邮件列表中看到彩色的主题。此功能仅支持QQ邮箱，域名邮箱，腾讯企业邮箱之间的用户往来邮件。'),(11,'怎样删除邮件？',7,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">删除邮件，有两种处理方法：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\"><br style=\"padding: 0px; margin: 0px;\"/></p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">在邮件列表区点击邮件前面的复选框，会出现一个打勾的标记；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">点击邮件列表区最上方的“删除”，即可将打勾的邮件删除到“已删除”邮件夹中。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">彻底删除邮件</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">注意！使用彻底删除的方法将不再把邮件删除到“已删除”邮件夹中，而是直接永久删除并且无法恢复！选择需要彻底删除的邮件，直接点击“彻底删除”即可。</p><p><br/></p>',1,'2019-05-25 21:49:49','删除邮件，有两种处理方法：在邮件列表区点击邮件前面的复选框，会出现一个打勾的标记；点击邮件列表区最上方的“删除”，即可将打勾的邮件删除到“已删除”邮件夹中。彻底删除邮件注意！使用彻底删除的方法将不再把邮件删除到“已删除”邮件夹中，而是直接永久删除并且无法恢复！选择需要彻底删除的邮件，直接点击“彻底删'),(12,'我删除的邮件可以恢复吗？',7,'<p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑, Arial, Verdana; font-size: 12px;\">如果您对邮件进行的是“删除”操作，可以在“已删除”中找到被删除的邮件点击“移回收件箱”或个人文件夹进行恢复；如果是“彻底删除”操作，则无法恢复。</span></p>',1,'2019-05-25 21:51:04','如果您对邮件进行的是“删除”操作，可以在“已删除”中找到被删除的邮件点击“移回收件箱”或个人文件夹进行恢复；如果是“彻底删除”操作，则无法恢复。'),(13,'我怎样转移邮件？',7,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">进入需要转移的信件所在的文件夹；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">在邮件列表区选中要转移的邮件（点击邮件前面的复选框）；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">点击邮件列表区上方的“转移到…”的下拉按钮；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">从下拉列表中选择目标文件夹，邮件立即被转移。</p><p><br/></p>',1,'2019-05-25 21:52:00','进入需要转移的信件所在的文件夹；在邮件列表区选中要转移的邮件（点击邮件前面的复选框）；点击邮件列表区上方的“转移到…”的下拉按钮；从下拉列表中选择目标文件夹，邮件立即被转移。'),(14,'什么是域名？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">什么是域名？</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">域名用来表示一个企业或组织在网上的地址，便于快速查找。例如“58.com”就是一个域名。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">企业邮箱为什么需要域名？</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">企业邮箱地址由用户名和域名构成，例如 hr@58.com，域名有助于提升公司的形象。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如何获取域名？</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">1.购买腾讯企业邮，可免费获赠域名；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">2.你也可以前往DNSPod、万网、新网等自行购买。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">所有域名都能申请腾讯企业邮箱吗？</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">1.二级域名如果能够设置MX记录，也是可以申请企业邮箱的，请直接在输入框中输入即可；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">2.目前不支持中文域名。</p><p><br/></p>',1,'2019-05-26 11:47:34','什么是域名？域名用来表示一个企业或组织在网上的地址，便于快速查找。例如“58.com”就是一个域名。 企业邮箱为什么需要域名？企业邮箱地址由用户名和域名构成，例如 hr@58.com，域名有助于提升公司的形象。 如何获取域名？1.购买腾讯企业邮，可免费获赠域名；2.你也可以前往D'),(15,'一个域名可以同时创建域名邮箱和企业邮箱吗？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">为了避免收信错乱的风险，我们限制了同一个域名只能使用域名邮箱和企业邮箱中的一个。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果您的域名已经注册了腾讯域名邮箱，请您在注册企业邮箱之前，注销掉原来的域名邮箱。</p><p><br/></p>',1,'2019-05-26 11:50:24','为了避免收信错乱的风险，我们限制了同一个域名只能使用域名邮箱和企业邮箱中的一个。 如果您的域名已经注册了腾讯域名邮箱，请您在注册企业邮箱之前，注销掉原来的域名邮箱。'),(16,'邮箱域名的所有权及设置方法？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">为了防止域名被冒用，对于某些域名，要求先验证这个域名的所有权，才可以建立企业邮箱。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">验证的方式是，根据要求，对域名设置一条唯一的CNAME记录。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果这条记录被成功设置，则证明该域名确实是属于申请者的。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对于大多数申请者来说，并不需要设置这条“唯一的CNAME”。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">当我们认为可能会出现域名冒用的情况，则会在创建过程中告知具体方法。</p><p><br/></p>',1,'2019-05-26 11:53:08','为了防止域名被冒用，对于某些域名，要求先验证这个域名的所有权，才可以建立企业邮箱。 验证的方式是，根据要求，对域名设置一条唯一的CNAME记录。如果这条记录被成功设置，则证明该域名确实是属于申请者的。 对于大多数申请者来说，并不需要设置这条“唯一的CNAME”。当我们认为可能会出'),(17,'什么是病毒？',9,'<p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑, Arial, Verdana; font-size: 12px;\">病毒是一种嵌入在其它程序中的小程序。运行正常程序时，病毒就被运行，并且自动将病毒程序复制到更多的正常程序中。它的传播方式类似生物学中的病毒，在移动文件存储设备、来历不明的文件存储介质或硬盘根目录中，可执行程序中，宏语言和可执行的邮件附件中都可以发现它们，有的还可以自动衍生出变种形态，以逃避系统安全软件的检测。</span></p>',1,'2019-05-26 11:57:28','病毒是一种嵌入在其它程序中的小程序。运行正常程序时，病毒就被运行，并且自动将病毒程序复制到更多的正常程序中。它的传播方式类似生物学中的病毒，在移动文件存储设备、来历不明的文件存储介质或硬盘根目录中，可执行程序中，宏语言和可执行的邮件附件中都可以发现它们，有的还可以自动衍生出变种形态，以逃避系统安全软'),(18,'什么是垃圾邮件？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">垃圾邮件泛指未经请求而发送的电子邮件，符合以下特征的邮件都属于垃圾邮件的范畴：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">来自收件人从未发送过邮件的地址第一次发出的邮件，以及在该邮件未被收件人自定义为正常邮件的情况下随后从同一地址发送给收件人的其他邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">来自被拒绝过接收邮件的地址所发给收件人的其他邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">来自被收件人列入黑名单的邮件地址的邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">内容包含可被反垃圾装置或可被邮件过滤器定义、归类为垃圾邮件的关键字段的邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">带虚假、无效邮件头的邮件，带虚假、无效域名的邮件，经过技术处理的不显示任何邮件来源信息的邮件。带欺骗性地址信息的邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">未经同意而使用、中继或通过第三方的互联网设备所发送的邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">主题行或内容包含错误、误导或虚假信息的邮件；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">主题或内容带敏感字眼的、违反国家法律法规或QQ邮箱服务条款的邮件。</p><p><br/></p>',1,'2019-05-26 12:00:36','垃圾邮件泛指未经请求而发送的电子邮件，符合以下特征的邮件都属于垃圾邮件的范畴：来自收件人从未发送过邮件的地址第一次发出的邮件，以及在该邮件未被收件人自定义为正常邮件的情况下随后从同一地址发送给收件人的其他邮件；来自被拒绝过接收邮件的地址所发给收件人的其他邮件；来自被收件人列入黑名单的邮件地址的邮件；垃圾邮件泛指未经请求而发送的电子邮件，符合以下特征的邮件都属于垃圾邮件的范畴：  来自收件人从未发送过邮件的地址第一次发出的邮件，以及在该邮件未被收件人自定义为正常邮件的情况下随后从同一地址发送给收件人的其他邮件；  来自被拒绝过接收邮件的地址所发给收件人的其他邮件；  来自被收件人列入黑名单的邮件地址的邮件；  内容包含可被反垃圾装置或可被邮件过滤器定义、归类为垃圾邮件的关键字段的邮件；  带虚假、无效邮件头的邮件，带虚假、无效域名的邮件，经过技术处理的不显示任何邮件来源信息的邮件。带欺骗性地址信息的邮件；  未经同意而使用、中继或通过第三方的互联网设备所发送的邮件；  主题行或内容包含错误、误导或虚假信息的邮件；  主题或内容带敏感字眼的、违反国家法律法规或QQ邮箱服务条款的邮件。'),(19,'我的邮件会被系统自动删除吗？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">一般情况下，邮件不会自动删除。但是如果您将邮件放在“已删除”邮件夹，系统会30天自动清除一次“已删除”邮件夹中的信件。另外，系统会30天自动清除一次“垃圾邮件”邮件夹中的信件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">请注意：千万不要把您有用的信件放在“已删除”文件夹中</p><p><br/></p>',1,'2019-05-26 12:02:14','一般情况下，邮件不会自动删除。但是如果您将邮件放在“已删除”邮件夹，系统会30天自动清除一次“已删除”邮件夹中的信件。另外，系统会30天自动清除一次“垃圾邮件”邮件夹中的信件。 请注意：千万不要把您有用的信件放在“已删除”文件夹中。'),(20,'发出去的邮件为什么被退回？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">己方问题</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">邮件的收件人地址错误是造成退信的主要原因。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人的邮箱地址一般格式为name@domain.com，其中name为收件人的邮箱名，domain.com为收件人邮箱服务商的域名。这两部分中任何一部分填写错误都有可能造成退信。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">您可以按照以下步骤检查您填写的收件人地址：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">1、请检查域名是否包含有不允许被使用的字符，如 / , * ? ; 等。这些字符有可能是您在敲击键盘时无意间输入的错误字符；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">2、请检查域名格式是否合法，一般来说，域名格式为　domain.com；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">3、请检查您输入的收件人地址中是否有不该出现的空格；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">4、再次核对您输入的收件人地址，检查地址中是否存在一些容易混淆的字符造成您输入错。例如：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">大写字母 O 与数字 0 ，</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">小写字母 l 与数字 1 ，</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">小写字母 g 与数字 9 ，</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">小写字母 l 与大写字母 I 。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">经过以上检查后您还是无法找到收件人地址的错误原因，请您联系对方，确认该邮件地址是否正确。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对方问题</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人的邮箱或收件人的邮件服务商也有可能造成您的邮件无法送达。以下是最常见的一些原因：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">1、收件人邮箱已满或剩余的空间无法容纳您发送的邮件：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果收件人的邮箱已经被邮件塞满，或者他的邮箱剩余的空间小于您这封邮件，这封邮件就无法投递成功。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">2、收件人拒收了您的邮件：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人可能创建了一些邮件过滤规则导致您的邮件被拒绝。例如将您加入了黑名单。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">3、收件人的邮件服务商有收信频率限制：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">为了防止垃圾邮件的侵害，很多邮件服务商都对邮件接受进行了频率限制。如果您过于频繁地向某个收件人发送邮件，或者向某个邮件服务商所属的用户发送大量的邮件，邮件服务商有可能暂时拒绝接受您发送的邮件，导致邮件被退回。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果您向同一邮件服务运营商发邮件的频率过高，您可以尝试减缓您的发信速度，看看是否可以解决该问题。 &nbsp;&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">4、收件人的邮件服务商将您的邮件判别为垃圾邮件：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">您的邮件内容中可能包含一些疑似广告的关键字，导致收件人的邮件服务商将您的邮件判别为垃圾邮件而拒收。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">5、收件人的邮件服务商屏蔽了您的邮件地址：<br style=\"padding: 0px; margin: 0px;\"/></p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人的邮箱服务商可能已将您的邮件地址列入黑名单，拒绝接收您发出的任何邮件。如果您认为你的邮件地址可能被对方误屏蔽，您可以提交 退信反馈表 给我们，我们将协助您解决。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">网络问题</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">网络通信质量不稳定或网速过慢也有可能导致邮件无法成功发送，造成退信。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">QQ邮箱的邮件服务器可能暂时无法与收件人的邮件服务器取得联系，或在联系过程中出现错误或断线，导致收件人无法收到您的邮件。</p><p><br/></p>',1,'2019-05-26 12:03:39','‍‍己方问题邮件的收件人地址错误是造成退信的主要原因。收件人的邮箱地址一般格式为name@domain.com，其中name为收件人的邮箱名，domain.com为收件人邮箱服务商的域名。这两部分中任何一部分填写错误都有可能造成退信。您可以按照以下步骤检查您填写的收件人地址：'),(21,'为什么常收不到邮件，白名单能帮助我吗？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收不到邮件的原因主要有以下两种：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">由于反垃圾将邮件拒收或者将邮件收入了垃圾箱；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对方服务器由于网络等原因没有发送过来；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">第一种情况，通过设置白名单后可以保证解决收不到邮件的情况；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">但是，第二种情况则接收方无法解决，需要您尝试和对方邮箱服务提供商联系</p><p><br/></p>',1,'2019-05-26 12:04:57','收不到邮件的原因主要有以下两种：由于反垃圾将邮件拒收或者将邮件收入了垃圾箱；对方服务器由于网络等原因没有发送过来；第一种情况，通过设置白名单后可以保证解决收不到邮件的情况；但是，第二种情况则接收方无法解决，需要您尝试和对方邮箱服务提供商联系'),(22,'为什么设置白名单后，收到的垃圾邮件增多？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">垃圾邮件多种多样，对于您来说最可能的情况是：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">某网站有您需要接收的邮件，但是该网站又尝试扫号或者通过发送营销邮件推广，所以该网站的邮件会被严格进行反垃圾扫描，导致误封您的邮件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">而设置白名单主要是防止反垃圾导致的误判垃圾邮件，所以设置后将不会对垃圾邮件进行检测，可能会导致垃圾邮件增多；</p><p><br/></p>',1,'2019-05-26 12:06:48','垃圾邮件多种多样，对于您来说最可能的情况是：某网站有您需要接收的邮件，但是该网站又尝试扫号或者通过发送营销邮件推广，所以该网站的邮件会被严格进行反垃圾扫描，导致误封您的邮件。而设置白名单主要是防止反垃圾导致的误判垃圾邮件，所以设置后将不会对垃圾邮件进行检测，可能会导致垃圾邮件增多；'),(23,'为什么设置白名单后，仍然无法收到邮件？',9,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收不到邮件的另一个重要原因是：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对方服务器由于网络或者其他自身原因没有把邮件发送过来；所以对于这种情况设置白名单仍然无法收到邮件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">这种情况，可以和发件人联系一下，看看对方是否有收到退信信息，可以根据退信信息判断问题所在；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果没有退信，则需要和对方邮箱服务提供商联系或者与腾讯企业邮箱QQ在线客服联系。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\"><br/></p><p><br/></p>',1,'2019-05-26 12:08:38','收不到邮件的另一个重要原因是：对方服务器由于网络或者其他自身原因没有把邮件发送过来；所以对于这种情况设置白名单仍然无法收到邮件。这种情况，可以和发件人联系一下，看看对方是否有收到退信信息，可以根据退信信息判断问题所在；如果没有退信，则需要和对方邮箱服务提供商联系或者与腾讯企业邮箱QQ在线客服联系。'),(24,'我的邮件会被系统自动删除吗？',10,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">一般情况下，邮件不会自动删除。但是如果您将邮件放在“已删除”邮件夹，系统会30天自动清除一次“已删除”邮件夹中的信件。另外，系统会30天自动清除一次“垃圾邮件”邮件夹中的信件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">请注意：千万不要把您有用的信件放在“已删除”文件夹中。</p><p><br/></p>',1,'2019-05-26 12:16:09','一般情况下，邮件不会自动删除。但是如果您将邮件放在“已删除”邮件夹，系统会30天自动清除一次“已删除”邮件夹中的信件。另外，系统会30天自动清除一次“垃圾邮件”邮件夹中的信件。 请注意：千万不要把您有用的信件放在“已删除”文件夹中。'),(25,'发出去的邮件为什么被退回？',10,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">己方问题</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">邮件的收件人地址错误是造成退信的主要原因。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人的邮箱地址一般格式为name@domain.com，其中name为收件人的邮箱名，domain.com为收件人邮箱服务商的域名。这两部分中任何一部分填写错误都有可能造成退信。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">您可以按照以下步骤检查您填写的收件人地址：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">1、请检查域名是否包含有不允许被使用的字符，如 / , * ? ; 等。这些字符有可能是您在敲击键盘时无意间输入的错误字符；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">2、请检查域名格式是否合法，一般来说，域名格式为　domain.com；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">3、请检查您输入的收件人地址中是否有不该出现的空格；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">4、再次核对您输入的收件人地址，检查地址中是否存在一些容易混淆的字符造成您输入错。例如：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">大写字母 O 与数字 0 ，</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">小写字母 l 与数字 1 ，</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">小写字母 g 与数字 9 ，</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">小写字母 l 与大写字母 I 。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">经过以上检查后您还是无法找到收件人地址的错误原因，请您联系对方，确认该邮件地址是否正确。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对方问题</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人的邮箱或收件人的邮件服务商也有可能造成您的邮件无法送达。以下是最常见的一些原因：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">1、收件人邮箱已满或剩余的空间无法容纳您发送的邮件：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果收件人的邮箱已经被邮件塞满，或者他的邮箱剩余的空间小于您这封邮件，这封邮件就无法投递成功。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">2、收件人拒收了您的邮件：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人可能创建了一些邮件过滤规则导致您的邮件被拒绝。例如将您加入了黑名单。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">3、收件人的邮件服务商有收信频率限制：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">为了防止垃圾邮件的侵害，很多邮件服务商都对邮件接受进行了频率限制。如果您过于频繁地向某个收件人发送邮件，或者向某个邮件服务商所属的用户发送大量的邮件，邮件服务商有可能暂时拒绝接受您发送的邮件，导致邮件被退回。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果您向同一邮件服务运营商发邮件的频率过高，您可以尝试减缓您的发信速度，看看是否可以解决该问题。 &nbsp;&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">4、收件人的邮件服务商将您的邮件判别为垃圾邮件：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">您的邮件内容中可能包含一些疑似广告的关键字，导致收件人的邮件服务商将您的邮件判别为垃圾邮件而拒收。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">5、收件人的邮件服务商屏蔽了您的邮件地址：<br style=\"padding: 0px; margin: 0px;\"/></p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收件人的邮箱服务商可能已将您的邮件地址列入黑名单，拒绝接收您发出的任何邮件。如果您认为你的邮件地址可能被对方误屏蔽，您可以提交 退信反馈表 给我们，我们将协助您解决。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">网络问题</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">网络通信质量不稳定或网速过慢也有可能导致邮件无法成功发送，造成退信。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">QQ邮箱的邮件服务器可能暂时无法与收件人的邮件服务器取得联系，或在联系过程中出现错误或断线，导致收件人无法收到您的邮件。</p><p><br/></p>',1,'2019-05-26 12:17:20','‍‍己方问题邮件的收件人地址错误是造成退信的主要原因。收件人的邮箱地址一般格式为name@domain.com，其中name为收件人的邮箱名，domain.com为收件人邮箱服务商的域名。这两部分中任何一部分填写错误都有可能造成退信。您可以按照以下步骤检查您填写的收件人地址：'),(26,'为什么常收不到邮件，白名单能帮助我吗？',10,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收不到邮件的原因主要有以下两种：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">由于反垃圾将邮件拒收或者将邮件收入了垃圾箱；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对方服务器由于网络等原因没有发送过来；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">第一种情况，通过设置白名单后可以保证解决收不到邮件的情况；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">但是，第二种情况则接收方无法解决，需要您尝试和对方邮箱服务提供商联系</p><p><br/></p>',1,'2019-05-26 12:18:47','收不到邮件的原因主要有以下两种：由于反垃圾将邮件拒收或者将邮件收入了垃圾箱；对方服务器由于网络等原因没有发送过来；第一种情况，通过设置白名单后可以保证解决收不到邮件的情况；但是，第二种情况则接收方无法解决，需要您尝试和对方邮箱服务提供商联系'),(27,'为什么设置白名单后，收到的垃圾邮件增多？',10,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">垃圾邮件多种多样，对于您来说最可能的情况是：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">某网站有您需要接收的邮件，但是该网站又尝试扫号或者通过发送营销邮件推广，所以该网站的邮件会被严格进行反垃圾扫描，导致误封您的邮件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">而设置白名单主要是防止反垃圾导致的误判垃圾邮件，所以设置后将不会对垃圾邮件进行检测，可能会导致垃圾邮件增多；</p><p><br/></p>',1,'2019-05-26 12:19:44','垃圾邮件多种多样，对于您来说最可能的情况是：某网站有您需要接收的邮件，但是该网站又尝试扫号或者通过发送营销邮件推广，所以该网站的邮件会被严格进行反垃圾扫描，导致误封您的邮件。而设置白名单主要是防止反垃圾导致的误判垃圾邮件，所以设置后将不会对垃圾邮件进行检测，可能会导致垃圾邮件增多；'),(28,'为什么设置白名单后，仍然无法收到邮件？',10,'<p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">收不到邮件的另一个重要原因是：</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">对方服务器由于网络或者其他自身原因没有把邮件发送过来；所以对于这种情况设置白名单仍然无法收到邮件。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">这种情况，可以和发件人联系一下，看看对方是否有收到退信信息，可以根据退信信息判断问题所在；</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\">如果没有退信，则需要和对方邮箱服务提供商联系或者与腾讯企业邮箱QQ在线客服联系。</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: 微软雅黑, Arial, Verdana; font-size: 12px; white-space: normal;\"><br/></p><p><br/></p>',1,'2019-05-26 12:44:43','收不到邮件的另一个重要原因是：对方服务器由于网络或者其他自身原因没有把邮件发送过来；所以对于这种情况设置白名单仍然无法收到邮件。这种情况，可以和发件人联系一下，看看对方是否有收到退信信息，可以根据退信信息判断问题所在；如果没有退信，则需要和对方邮箱服务提供商联系或者与腾讯企业邮箱QQ在线客服联系。'),(29,'关于我们',11,'<p><br/></p><p><img src=\"/ueditor/php/upload/image/20190526/1558848408.jpg\" width=\"444\" height=\"364\" border=\"0\" hspace=\"0\" vspace=\"0\" style=\"float: left; width: 444px; height: 364px;\" title=\"1558848408.jpg\" alt=\"1558848408.jpg\"/><span style=\"font-size: 36px;\"><br/></span></p><p style=\"margin-bottom: 5px; line-height: 2em;\"><span style=\"font-size: 36px;\">&nbsp;&nbsp;&nbsp;&nbsp;关于我们</span></p><p style=\"padding: 0px; margin-top: 0px; color: rgb(51, 51, 51); list-style-type: none; font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 14px; white-space: normal; margin-bottom: 5px; line-height: 2em;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海连岳信息科技有限公司 ，负责腾讯企业邮箱推广、销售及渠道拓展，多年来秉承以用户价值为依归的经营理念，将最优质的企业邮箱产品推荐给最需要的客户，同时为客户提供更专业的信息化指导和建议，提高客户企业的工作效率，取得客户的高度认同。&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; color: rgb(51, 51, 51); list-style-type: none; font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 14px; white-space: normal; margin-bottom: 5px; line-height: 2em;\">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海连岳信息科技有限公司 目前人员规模为58人。其中销售38人。客维人员为10名。腾讯外派技术人员2名。及其他行政及财务人员。腾讯企业邮箱是一种邮件托管服务。企业仅需要将自己的域名进行简单的设置，就能够创建属于自己的邮局。并管理以自己域名结尾的邮箱帐号，把它们分给员工使用。秉承QQ邮箱一贯的稳定、简洁和快速，同时还整合了多种企业应用，涵盖资源共享、消息发布、组织管理等方面。无论你的企业是上千员工的跨国公司，还是几百人的中型企业，甚至是十几人的创业团队，腾讯企业邮箱都将帮助你的企业高效地开展每天的工作。</p><p><br/></p>',1,'2019-05-26 13:45:22','关于我们'),(30,'联系我们',12,'<table><tbody><tr class=\"firstRow\"><td width=\"458\" valign=\"top\" height=\"282\" style=\"word-break: break-all;\"><p><strong style=\"padding: 0px; margin: 0px; color: rgb(51, 51, 51); font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 18px; white-space: normal;\">上海连岳信息科技有限公司</strong></p><p><strong style=\"padding: 0px; margin: 0px; color: rgb(51, 51, 51); font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 18px; white-space: normal;\"><br/></strong></p><p><strong style=\"padding: 0px; margin: 0px; color: rgb(51, 51, 51); font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 18px; white-space: normal;\"><br/></strong></p><p></p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 12px; white-space: normal;\">服务热线：400-863-0855</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 12px; white-space: normal;\">客服热线：kf@qqyouxiang.net&nbsp;&nbsp;</p><p style=\"padding: 0px; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, 51); list-style-type: none; font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 12px; white-space: normal;\">地址：上海市浦东新区高科西路1000号</p><p><strong style=\"padding: 0px; margin: 0px; color: rgb(51, 51, 51); font-family: Î¢ÈíÑÅºÚ, Arial, Verdana; font-size: 18px; white-space: normal;\"><br/></strong><br/></p></td><td width=\"458\" valign=\"top\" height=\"282\"><iframe class=\"ueditor_baidumap\" src=\"http://qmail.com/static/admin/lib/ueditor/1.4.3/dialogs/map/show.html#center=121.550455,31.227349&zoom=13&width=530&height=340&markers=121.550455,31.227349&markerStyles=l,A\" frameborder=\"0\" width=\"534\" height=\"344\"></iframe></td></tr></tbody></table><p><br/></p>',1,'2019-05-26 13:51:46','联系我们');
-/*!40000 ALTER TABLE `article` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `article_category`
---
-
+-- ----------------------------
+-- Table structure for article_category
+-- ----------------------------
 DROP TABLE IF EXISTS `article_category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `article_category` (
+CREATE TABLE `article_category`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(200) NOT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
-  `is_delete` tinyint(4) NOT NULL DEFAULT '0',
+  `category_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='文章分类';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章分类' ROW_FORMAT = Compact;
 
---
--- Dumping data for table `article_category`
---
+-- ----------------------------
+-- Table structure for customer
+-- ----------------------------
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `qq` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `mobile` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `weixin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `users_num` int(11) DEFAULT NULL,
+  `end_time` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `uses_info` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `track_info` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `note` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `is_delete` tinyint(4) DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-LOCK TABLES `article_category` WRITE;
-/*!40000 ALTER TABLE `article_category` DISABLE KEYS */;
-INSERT INTO `article_category` VALUES (7,'常见问题',0,0),(8,'新闻资讯',0,0),(9,'公司动态',8,0),(10,'营销动态',8,0),(11,'关于我们',0,0),(12,'联系我们',0,0);
-/*!40000 ALTER TABLE `article_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pictures`
---
-
+-- ----------------------------
+-- Table structure for pictures
+-- ----------------------------
 DROP TABLE IF EXISTS `pictures`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pictures` (
+CREATE TABLE `pictures`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL COMMENT '标题',
-  `path` varchar(500) DEFAULT NULL COMMENT '路径',
-  `url` varchar(500) DEFAULT NULL COMMENT '链接',
-  `type` tinyint(4) DEFAULT '0' COMMENT '类别',
-  `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除',
-  `create_time` datetime NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '标题',
+  `path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '路径',
+  `url` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '链接',
+  `type` tinyint(4) DEFAULT 0 COMMENT '类别',
+  `is_delete` tinyint(4) DEFAULT 0 COMMENT '是否删除',
+  `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = MyISAM AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `pictures`
---
-
-LOCK TABLES `pictures` WRITE;
-/*!40000 ALTER TABLE `pictures` DISABLE KEYS */;
-INSERT INTO `pictures` VALUES (7,'幻灯片1','5eca22e99f6f6cb631ad8cc73a121a32.jpg','http://qmail.com/index/Home/index',99,0,'2019-05-26 00:00:00'),(8,'幻灯片2','8623028f47a553c1f1a11e4b088e696b.jpg','http://qmail.com/index/Home/index',99,0,'0000-00-00 00:00:00'),(9,'幻灯片3','4487f3bde1c1b2d47a85b96898e339c3.jpg','http://qmail.com/index/Home/index',99,0,'0000-00-00 00:00:00'),(11,'顶部左图片','6193326629501b67c15faf5965eb1cd9.jpg','http://qmail.com/index/Home/index',97,0,'2019-05-26 17:38:10');
-/*!40000 ALTER TABLE `pictures` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `product`
---
-
+-- ----------------------------
+-- Table structure for product
+-- ----------------------------
 DROP TABLE IF EXISTS `product`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product` (
+CREATE TABLE `product`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(500) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
-  `content` text,
-  `is_delete` tinyint(4) DEFAULT '0',
+  `title` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `is_delete` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `product`
---
-
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (4,'￥750元/年','750','5用户、无限邮箱容量<br>32G个人中转站<br>5G企业网盘',0),(5,'￥7250元/年','7250','50用户、无限邮箱容量<br>32G个人中转站<br>50G企业网盘',0),(6,'￥26000元','26000','200用户、无限邮箱容量<br>32G个人中转站<br>200G企业网盘',0);
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `system`
---
-
+-- ----------------------------
+-- Table structure for system
+-- ----------------------------
 DROP TABLE IF EXISTS `system`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system` (
+CREATE TABLE `system`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `company` varchar(255) DEFAULT NULL,
-  `tel` varchar(255) DEFAULT NULL,
-  `mobile` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `qq` varchar(255) DEFAULT NULL,
-  `price` int(10) DEFAULT '0',
+  `company` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `mobile` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `qq` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `price` int(10) DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `system`
---
-
-LOCK TABLES `system` WRITE;
-/*!40000 ALTER TABLE `system` DISABLE KEYS */;
-INSERT INTO `system` VALUES (2,'上海连岳信息科技有限公司','400-863-0855','13900000000','kf@qqyouxiang.net','上海市浦东新区高科西路1000号','502677118',150);
-/*!40000 ALTER TABLE `system` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-05-26 21:36:12
+SET FOREIGN_KEY_CHECKS = 1;
