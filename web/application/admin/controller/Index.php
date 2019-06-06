@@ -21,7 +21,7 @@ class Index extends Controller
 		
 		$view = new View();
 		$view->assign('admin_name', Session::get('admin_name'));
-		$view->assign('system', $list[0]);
+		$view->assign('system', !empty($list[0])?$list[0]:array());
 		return $view->fetch('admin/index');
     }
 	
