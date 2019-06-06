@@ -9,8 +9,15 @@ class System extends Model
 {
 	public function saveSystem($data)
 	{
-		//print_r($data);die;
-		return Db::execute('replace into system SET company = ?, tel = ?, mobile = ?, email = ?, address = ?, qq = ?, price = ?  where id = 1 ',[$data['name'],$data['tel'],$data['mobile'], $data['email'], $data['address'], $data['qq'], $data['price']]);
+		if($this->getSystem())
+		{
+			return Db::execute('update system SET company = ?, tel = ?, mobile = ?, email = ?, address = ?, qq = ?, price = ?  where id = 1 ',[$data['name'],$data['tel'],$data['mobile'], $data['email'], $data['address'], $data['qq'], $data['price']]);
+		}
+		else
+		{
+			return Db::execute('insert into SET company = ?, tel = ?, mobile = ?, email = ?, address = ?, qq = ?, price = ?',[$data['name'],$data['tel'],$data['mobile'], $data['email'], $data['address'], $data['qq'], $data['price']]);
+		}
+		
 	}
 	
 	public function getSystem()
