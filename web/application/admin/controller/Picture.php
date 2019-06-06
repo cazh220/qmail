@@ -32,7 +32,7 @@ class Picture
 						$type_name = '默认';
 				}
 				$list[$key]['type_name'] = $type_name;
-				$list[$key]['path']  = "http://qmail.com/upload/".$val['path'];
+				$list[$key]['path']  = Config::get('host_url')."upload/".$val['path'];
 			}
 		}
 		
