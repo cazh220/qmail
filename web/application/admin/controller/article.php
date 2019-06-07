@@ -93,6 +93,9 @@ class Article extends Controller
 		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
 		$thumb_pic 		= !empty($_REQUEST['thumb_pic']) ? trim($_REQUEST['thumb_pic']) : '';
 
+		$content = str_replace('+', '&', $content);
+		$content = str_replace(' ', '&', $content);
+		
 		$id 	= !empty($_REQUEST['article_id']) ? intval($_REQUEST['article_id']) : 0;
 		$Article = model('Article');
 		$result = $Article->editArticle($content, $category_id, $title, $brief, $thumb_pic, $id);
