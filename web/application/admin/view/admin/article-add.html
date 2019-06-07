@@ -114,9 +114,9 @@ function add()
 	var title = $("#title").val();
 	var brief = $("#brief").val();
 	var thumb_pic = $("#thumb_pic").val();
-	content = HTMLEnCode(content);
-	console.log(content);
-	
+	//content = HTMLEnCode(content);
+	//console.log(content);
+	content = encodeURIComponent(content);
 	$.ajax({
             type: "post",
             url: "add",

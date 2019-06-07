@@ -119,12 +119,27 @@ function edit()
 	var thumb_pic = $("#thumb_pic").val();
 	var article_id = $("#article_id").val();
 	
-	content = HTMLEnCode(content);
+	content = encodeURIComponent(content);
+	//var data = '{"category_id":'+category_id+',"title":"'+title+'","brief":"'+brief+'","thumb_pic":"'+thumb_pic+'","content":"'+content+'","article_id":'+article_id+'}';
+	/*
+	var data = new Array();
+	data['category_id'] = category_id;
+	data['title'] = title;
+	data['brief'] = brief;
+	data['thumb_pic'] = thumb_pic;
+	data['content'] = content;
+	data['article_id'] = article_id;
+	console.log(data);
+	var json_data = JSON.stringify(data);
+	console.log(json_data);*/
+	//console.log(data);
+	//return false;
 	
 	$.ajax({
             type: "post",
             url: "edit",
             data: "category_id="+category_id+'&title='+title+'&brief='+brief+'&thumb_pic='+thumb_pic+'&editorValue='+content+'&article_id='+article_id,
+			//data:"txt="+data,
             dataType:"json",
             success: function(msg){
                 if(msg.code == 1)

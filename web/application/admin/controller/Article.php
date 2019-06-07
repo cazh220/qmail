@@ -51,8 +51,8 @@ class Article extends Controller
 		$thumb_pic		= !empty($_REQUEST['thumb_pic']) ? $_REQUEST['thumb_pic'] : '';
 		//print_r($content);
 		//把content >替换
-		$content = str_replace('+', '&', $content);
-		$content = str_replace(' ', '&', $content);
+		//$content = str_replace('+', '&', $content);
+		$content = urldecode($content);
 		//print_r($content);die;
 		$Article = model('Article');
 		$result = $Article->addArticle($content, $category_id, $title, $brief, $thumb_pic);
@@ -87,14 +87,14 @@ class Article extends Controller
 
 	public function edit()
 	{
+		//print_r($_REQUEST);die;
 		$category_id 	= !empty($_REQUEST['category_id']) ? intval($_REQUEST['category_id']) : 0;
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
 		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
 		$thumb_pic 		= !empty($_REQUEST['thumb_pic']) ? trim($_REQUEST['thumb_pic']) : '';
-
-		$content = str_replace('+', '&', $content);
-		$content = str_replace(' ', '&', $content);
+		//print_r(urldecode($content));die;
+		$content = urldecode($content);
 		
 		$id 	= !empty($_REQUEST['article_id']) ? intval($_REQUEST['article_id']) : 0;
 		$Article = model('Article');
