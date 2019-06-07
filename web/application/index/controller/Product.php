@@ -12,7 +12,7 @@ class Product extends Base
 		$view = new View();
 		$view->assign('top_left_picture', Session::get('top_left_picture'));
 		$view->assign('system', Session::get('system_info'));
-		$view->assign('qrcode', Session::get('qrcode'));
+		$view->assign('qrcode', Session::get('qrcode')?Session::get('qrcode'):array('path'=>''));
 		return $view->fetch('index/product_better');
 	}
 
