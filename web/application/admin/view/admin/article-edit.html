@@ -76,7 +76,7 @@
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> &nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+				<button onClick="edit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> &nbsp;&nbsp;提交&nbsp;&nbsp;</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 
 			</div>
@@ -102,7 +102,7 @@
 <script type="text/javascript" src="{$Think.config.host_url}static/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 
-function removeIframe()
+function edit()
 {
 	var ue = UE.getEditor('editor');
 	var content = ue.getContent(); 
@@ -131,6 +131,12 @@ function removeIframe()
                 
             }
         });
+}
+
+function removeIframe()
+{
+	var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);
 }
 
 $(function(){
