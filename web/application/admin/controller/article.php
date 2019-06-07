@@ -74,7 +74,7 @@ class Article extends Controller
 
     	$category = $Article->categoryList();
 		$category_tree = $this->get_tree($category, 0);
-
+		//print_r($category_tree);die;
     	$view = new View();
 		$view->assign('category', $category_tree);
 		$view->assign('article', $list[0]);
