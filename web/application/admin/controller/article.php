@@ -49,7 +49,11 @@ class Article extends Controller
 		$brief 			= !empty($_REQUEST['brief']) ? trim($_REQUEST['brief']) : '';
 		$content 		= !empty($_REQUEST['editorValue']) ? $_REQUEST['editorValue'] : '';
 		$thumb_pic		= !empty($_REQUEST['thumb_pic']) ? $_REQUEST['thumb_pic'] : '';
-
+		//print_r($content);
+		//把content >替换
+		$content = str_replace('+', '&', $content);
+		$content = str_replace(' ', '&', $content);
+		//print_r($content);die;
 		$Article = model('Article');
 		$result = $Article->addArticle($content, $category_id, $title, $brief, $thumb_pic);
 

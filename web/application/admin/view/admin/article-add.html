@@ -98,6 +98,19 @@
 <script type="text/javascript" src="{$Think.config.host_url}static/admin/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
 <script type="text/javascript" src="{$Think.config.host_url}static/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
+function  HTMLEnCode(str) 
+ { 
+    var  s  =  ""; 
+    if  (str.length  ==  0)  return  ""; 
+    s  =  str.replace(/&/g,  "+"); 
+    s  =  s.replace(/ </g,    "<"); 
+    s  =  s.replace(/>/g,    ">"); 
+    s  =  s.replace(/  /g,    " "); 
+    s  =  s.replace(/\'/g,   "'"); 
+    s  =  s.replace(/\"/g,   '"'); 
+    s  =  s.replace(/\n/g,   " <br>"); 
+    return  s; 
+ } 
 
 function add()
 {
@@ -107,7 +120,9 @@ function add()
 	var title = $("#title").val();
 	var brief = $("#brief").val();
 	var thumb_pic = $("#thumb_pic").val();
-
+	content = HTMLEnCode(content);
+	console.log(content);
+	
 	$.ajax({
             type: "post",
             url: "add",
