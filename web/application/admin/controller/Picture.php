@@ -55,7 +55,7 @@ class Picture
 	{
 		$pictures 		= !empty($_REQUEST['pictures']) ? trim($_REQUEST['pictures']) : '';
 		$title 			= !empty($_REQUEST['title']) ? trim($_REQUEST['title']) : '';
-		$type 			= !empty($_REQUEST['type']) ? $_REQUEST['type'] : '';
+		$type 			= !empty($_REQUEST['type']) ? intval($_REQUEST['type']) : 0;
 		$url 			= !empty($_REQUEST['url']) ? trim($_REQUEST['url']) : '';
 		if($pictures)
 		{
