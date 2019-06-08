@@ -141,8 +141,8 @@ $(function() {
 <div class="banner">
   <div id="full-screen-slider">
   <ul id="slidesa">
-    {volist name="huandengpian" id="item"}
-    {if $item.show == 1}
+    {volist name="huandengpian" id="item" key="k"}
+    {if $k == 0}
     <li style="background: url('{$Think.config.host_url}upload/{$item.path|default=""}') center top; display: block; z-index: 800;"><a href="{$item.url|default=""}" target="_blank"></a></li>
     {else}
     <li style="background: url('{$Think.config.host_url}upload/{$item.path|default=""}') center top; display: none; z-index: 900;"><a href="{$item.url|default=""}" target="_blank"></a></li>
