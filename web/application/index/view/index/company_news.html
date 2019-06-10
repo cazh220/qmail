@@ -147,13 +147,12 @@ $(function() {
   <div class="wrapc">
 	{volist name="article" id="list"}
     <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="/index/Question/detail?id={$list.article_id}" title="{$list.title|default=''}"><font color="#333333">{$list.title|default=''}</font></a></div>
+   	  <div class="nelt"><span>{$list.update_time|default=''}</span><a href="/index/Question/detail?id={$list.article_id}" title="{$list.title|default=''}"><font color="#333333">{$list.title|default=''}</font></a></div>
       <div class="nelc">{$list.brief|default=''}</div>
     </div>
 	{/volist}
 
 
-<div id="fenye"><div class="pageNavi"><div class="wp-pagenavi"><span class="nolink">首页</span><span class="nolink">上一页</span><span><font color="red">1</font></span><span class="nolink">下一页</span><span class="nolink">尾页</span> 转到 <select name="select" onchange="var jmpURL=this.options[this.selectedIndex].value ; if(jmpURL!=&#39;&#39;) {window.location=jmpURL;} else {this.selectedIndex=0 ;}"><option value="?1_1.html" selected="selected">1</option></select></div></div></div>
   <div class="cl"></div>
   </div>
   

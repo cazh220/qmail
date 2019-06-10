@@ -142,7 +142,7 @@ $(function() {
 <script src="{$Think.config.static_url}static/js/subnav.js" type="text/javascript"></script> 
   <div class="wrapc">
     <h2>{$article.title|default=''}</h2>
-    <div id="info">作者：　发布于：2018-3-23 15:38:04　点击量：<script src="{$Think.config.static_url}static/css/AspCms_Visits.asp"></script>71</div>
+    <div id="info">发布于：{$article.update_time|default=''}</div>
     <p></p><p>
 	{$article.content|default=''}
 	</p><script src="{$Think.config.static_url}static/css/AspCms_VisitsAdd.asp"></script><p></p>

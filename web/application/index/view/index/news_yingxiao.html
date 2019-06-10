@@ -148,7 +148,7 @@ $(function() {
   <div class="wrapc">
 	{volist name="article" id="list"}
     <div class="nel">
-   	  <div class="nelt"><span>2018-03-23</span><a href="/index/Question/detail?id={$list.article_id|default=0}" title="{$list.title|default=''}"><font color="#333333">{$list.title|default=''}</font></a></div>
+   	  <div class="nelt"><span>{$list.update_time|default=''}</span><a href="/index/Question/detail?id={$list.article_id|default=0}" title="{$list.title|default=''}"><font color="#333333">{$list.title|default=''}</font></a></div>
       <div class="nelc">{$list.brief|default=''}</div>
     </div>
 	{/volist}
