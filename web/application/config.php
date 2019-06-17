@@ -49,9 +49,9 @@ return [
     // 控制器类后缀
     'controller_suffix'      => false,
 	//host设置
-	'host_url'				 => 'http://qmail.com/',
+	'host_url'				 => 'http://www.qqyouxiang88.com/',
     
-    'static_url'             => 'http://qmail.com/static/index/',
+    'static_url'             => 'http://www.qqyouxiang88.com/static/index/',
 
     // +----------------------------------------------------------------------
     // | 模块设置
@@ -247,7 +247,7 @@ return [
 	//SEO
 	'keywords'		=> '服务器',
 	'description'	=> '服务器mail',
-    'qq'            => '502677118',//默认系统QQ
-    'price'         => 751,//最低价格
-    'telphone'      => '400-800-1234',//客服电话
+    'qq'            => '',//默认系统QQ
+    'price'         => 0,//最低价格
+    'telphone'      => '',//客服电话
 ];
