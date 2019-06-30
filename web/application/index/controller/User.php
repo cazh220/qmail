@@ -1,0 +1,28 @@
+<?php
+namespace app\index\controller;
+
+use think\View;
+use think\Session;
+use app\index\Base;
+
+class User extends Base
+{
+	public function index()
+	{
+		
+		/*
+		$User = model('User');
+		$list = $Article->getArticleList('关于我们');
+		*/
+		$view = new View();
+		/*
+		$view->assign('article', !empty($list[0]) ? $list[0] : array());
+		$view->assign('system', Session::get('system_info'));
+		$view->assign('qrcode', Session::get('qrcode'));
+		$view->assign('top_left_picture', Session::get('top_left_picture'));
+		*/
+		return $view->fetch('index/user');
+	}
+
+
+}

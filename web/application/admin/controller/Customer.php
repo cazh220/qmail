@@ -23,6 +23,17 @@ class Customer extends Controller
 		return $view->fetch('admin/customer_list');
     }
 	
+	public function list()
+	{
+		$keyword = !empty($_GET['keyword']) ? trim($_GET['keyword']) : '';
+		
+		$Customer = model('Customer');
+		$list = $Customer->getCustomerList($keyword);
+		
+		$data = array('code'=>0, 'msg'=>'ok', 'count'=>count($list), 'data'=>$list);
+		exit(json_encode($data));
+	}
+	
 	public function addCustomer()
 	{
 		$view = new View();
