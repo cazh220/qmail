@@ -49,9 +49,9 @@ return [
     // 控制器类后缀
     'controller_suffix'      => false,
 	//host设置
-	'host_url'				 => 'http://www.qqyouxiang88.com/',
+	'host_url'				 => 'http://qmail.com/',
     
-    'static_url'             => 'http://www.qqyouxiang88.com/static/index/',
+    'static_url'             => 'http://qmail.com/static/index/',
 
     // +----------------------------------------------------------------------
     // | 模块设置

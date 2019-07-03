@@ -24,5 +24,31 @@ class User extends Base
 		return $view->fetch('index/user');
 	}
 
+	public function checkname()
+	{
+		$name = $_GET['name'];
+		$Customer = model('Customer');
+		if($Customer->getCustomerByName($name))
+		{
+			exit(json_encode(array('code'=>0,'msg'=>'用户名已存在')));
+		}
+		exit(json_encode(array('code'=>1,'msg'=>'ok')));
+	}
+
+	public function checkmobile()
+	{
+		$mobile = $_GET['mobile'];
+		$Customer = model('Customer');
+		if($Customer->getCustomerByMobile($mobile))
+		{
+			exit(json_encode(array('code'=>0,'msg'=>'手机号已存在')));
+		}
+		exit(json_encode(array('code'=>1,'msg'=>'ok')));
+	}
+
+	public function add()
+	{
+
+	}
 
 }

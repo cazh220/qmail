@@ -20,8 +20,8 @@
     <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
     <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
     <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-	<button class="layui-btn layui-btn-sm" lay-event="isAll">添加新客户</button>
-	<input style="width:250px; height:30px; float:left" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+	  <button class="layui-btn layui-btn-sm" lay-event="addCustomer">添加新客户</button>
+	  <input style="width:250px; height:30px; float:left" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
   </div>
 </script>
  
@@ -33,10 +33,23 @@
           
 <script src="{$Think.config.static_url}static/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
- 
+<style type="text/css">
+.content {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.record{
+  color:red;
+}
+</style> 
 <script>
-layui.use('table', function(){
-  var table = layui.table;
+layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
+  var table = layui.table
+  ,form = layui.form;
+  var $ = layui.$;
+  var element = layui.element;
+  var laydate = layui.laydate;
   
   table.render({
     elem: '#test'
@@ -78,6 +91,9 @@ layui.use('table', function(){
       case 'isAll':
         layer.msg(checkStatus.isAll ? '全选': '未全选');
       break;
+      case 'addCustomer':
+        addCustomer();
+      break;
     };
   });
   
@@ -100,6 +116,72 @@ layui.use('table', function(){
         });
         layer.close(index);
       });
+    }
+  });
+
+  function addCustomer()
+  {
+    var html = '<div class="content"><form class="layui-form" action="add"><div class="layui-form-item"><label class="layui-form-label"><span class="record">*</span>姓名</label><div class="layui-input-block"><input type="text" name="name" lay-verify="required|title" placeholder="必填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record">*</span>邮箱</label><div class="layui-input-block"><input type="text" name="email" lay-verify="required|email" placeholder="必填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record">*</span>手机号</label><div class="layui-input-block"><input type="text" name="mobile" lay-verify="required|phone|mobile" placeholder="必填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>微信号</label><div class="layui-input-block"><input type="text" name="weixin"  placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>QQ</label><div class="layui-input-block"><input type="text" name="qq" placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>用户数</label><div class="layui-input-block"><input type="text" name="users_num" placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>到期时间</label><div class="layui-input-block"><input type="text" id="end_time" name="end_time" lay-verify="date" placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>使用情况</label><div class="layui-input-block"><textarea name="uses_info" placeholder="请输入使用情况" class="layui-textarea"></textarea></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>跟踪情况</label><div class="layui-input-block"><textarea name="track_info" placeholder="请输入跟踪情况" class="layui-textarea"></textarea></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>备注</label><div class="layui-input-block"><textarea name="note" placeholder="请输入备注" class="layui-textarea"></textarea></div></div><div class="layui-form-item"><div class="layui-input-block"><button class="layui-btn" lay-submit lay-filter="formUser">确定</button></div></div></form></div>';
+    layer.open({
+      type: 1 //Page层类型
+      ,area: ['700px', '900px']
+      ,title: '添加成员'
+      ,shade: 0.6 //遮罩透明度
+      ,maxmin: true //允许全屏最小化
+      ,anim: 1 //0-6的动画形式，-1不开启
+      ,content: html
+    }); 
+    laydate.render({
+      elem: '#end_time' //指定元素
+    });
+    form.render(); 
+  }
+
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 1){
+        return '姓名不为空';
+      }
+
+      var result = '';
+      $.ajax({
+        url:"/index/User/checkname",
+        type:"GET",
+        data:'name='+value,
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          if (msg.code == 0)
+          {
+              result = msg.msg
+          }
+          
+        }
+      });
+      return result;
+    },
+    mobile:function(mobile){
+      if(mobile.length < 1){
+        return '手机号不为空';
+      }
+
+      var result = '';
+      $.ajax({
+        url:"/index/User/checkmobile",
+        type:"GET",
+        data:'mobile='+value,
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          if (msg.code == 0)
+          {
+              result = msg.msg
+          }
+          
+        }
+      });
+      return result;
     }
   });
 });
