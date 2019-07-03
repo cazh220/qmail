@@ -48,7 +48,29 @@ class User extends Base
 
 	public function add()
 	{
-
+		$name = $_GET['name'];
+		$email = $_GET['email'];
+		$qq = $_GET['qq'];
+		$mobile = $_GET['mobile'];
+		$weixin = $_GET['weixin'];
+		$users_num = $_GET['users_num'];
+		$end_time = $_GET['end_time'];
+		$uses_info = $_GET['uses_info'];
+		$track_info = $_GET['track_info'];
+		$note = $_GET['note'];
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
