@@ -46,18 +46,77 @@ class User extends Base
 		exit(json_encode(array('code'=>1,'msg'=>'ok')));
 	}
 
-	public function add()
+	public function checkname2()
 	{
 		$name = $_GET['name'];
-		$email = $_GET['email'];
-		$qq = $_GET['qq'];
+		$Customer = model('Customer');
+		$list = $Customer->getCustomerByName($name);
+		if(count($list) > 1)
+		{
+			exit(json_encode(array('code'=>0,'msg'=>'用户名已存在')));
+		}
+		exit(json_encode(array('code'=>1,'msg'=>'ok')));
+	}
+
+	public function checkmobile2()
+	{
 		$mobile = $_GET['mobile'];
-		$weixin = $_GET['weixin'];
-		$users_num = $_GET['users_num'];
-		$end_time = $_GET['end_time'];
-		$uses_info = $_GET['uses_info'];
-		$track_info = $_GET['track_info'];
-		$note = $_GET['note'];
+		$Customer = model('Customer');
+		$list = $Customer->getCustomerByMobile($mobile);
+		if(count($list) > 1)
+		{
+			exit(json_encode(array('code'=>0,'msg'=>'手机号已存在')));
+		}
+		exit(json_encode(array('code'=>1,'msg'=>'ok')));
+	}
+
+	public function add()
+	{
+		$param = array();
+		if(!empty($_POST['param']))
+		{
+			$param = json_decode($_POST['param'], true);
+		}
+
+		$Customer = model('Customer');
+		$result = $Customer->addCustomer($param);
+
+		if($result)
+		{
+			exit(json_encode(array('code'=>1,'msg'=>'添加成功')));
+		}
+		exit(json_encode(array('code'=>0,'msg'=>'添加失败')));
+	}
+
+	public function edit()
+	{
+		$param = array();
+		if(!empty($_POST['param']))
+		{
+			$param = json_decode($_POST['param'], true);
+		}
+		$id = !empty($param['c_id']) ? intval($param['c_id']) : 0;
+		unset($param['c_id']);
+		$Customer = model('Customer');
+		$result = $Customer->updateCustomer($param, $id);
+
+		if($result)
+		{
+			exit(json_encode(array('code'=>1,'msg'=>'编辑成功')));
+		}
+		exit(json_encode(array('code'=>0,'msg'=>'编辑失败')));
+	}
+
+	public function del()
+	{
+		$id = $_GET['id'];
+		$Customer = model('Customer');
+		$result = $Customer->delCustomer($id);
+		if(!$result)
+		{
+			exit(json_encode(array('code'=>0,'msg'=>'删除失败')));
+		}
+		exit(json_encode(array('code'=>1,'msg'=>'删除成功')));
 	}
 
 }
