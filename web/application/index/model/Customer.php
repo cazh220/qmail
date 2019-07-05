@@ -7,6 +7,25 @@ use think\Paginator;
 
 class Customer extends Model
 {	
+	public function getCustomerList($keyword='', $page=1, $page_size=10)
+	{
+		$where = " where is_delete = 0";
+		if($keyword)
+		{
+			$where .= " and name like '%".$keyword."%' or mobile like '%".$keyword."%' or email like '%".$keyword."%'";
+		}
+		$sql_num = "select count(*) as count from customer".$where;
+		$sql = "select * from customer".$where." order by id desc";
+		$start = ($page-1)*$page_size;
+		$limit = $page_size;
+		$sql .= " limit ".$start.",".$limit;
+		
+		$res = Db::query($sql);
+		$res_count = Db::query($sql_num);
+		$count = !empty($res_count[0]['count']) ? intval($res_count[0]['count']) : 0;
+		$data = array('count'=>$count, 'data'=>$res);
+		return $data;
+	}
 	
 	public function getCustomerByName($name='')
 	{

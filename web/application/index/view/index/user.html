@@ -16,15 +16,9 @@
 <table class="layui-hide" id="test" lay-filter="test"></table>
 
 <script type="text/html" id="toolbarDemo">
-  <div class="layui-input-block">
-    <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-    <button class="layui-btn layui-btn-sm" lay-event="search">搜索</button>
-    <button class="layui-btn layui-btn-sm" lay-event="addCustomer">添加新客户</button>
-  </div>
-  <div class="layui-btn-container">
-    
-	  
-  </div>
+  <button class="layui-btn layui-btn-sm" lay-event="search">搜索</button>
+  <button class="layui-btn layui-btn-sm" lay-event="addCustomer">添加新客户</button>
+  <input style="width:250px; height:30px; float:left; margin-right:20px;" type="text" id="keywords" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入姓名或电话或邮箱" class="layui-input">
 </script>
  
 <script type="text/html" id="barDemo">
@@ -55,11 +49,11 @@ layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
   
   table.render({
     elem: '#test'
-    ,url:'http://qmail.com/admin.php/admin/Customer/list'
+    ,url:'http://qmail.com/index.php/index/User/list'
     ,toolbar: '#toolbarDemo'
     ,title: '用户数据表'
     ,cols: [[
-      ,{field:'id', title:'ID', width:60, fixed: 'left', unresize: true, sort: true}
+      {field:'id', title:'ID', width:60, fixed: 'left', unresize: true, sort: true}
       ,{field:'name', title:'姓名', width:120, edit: 'text'}
       ,{field:'email', title:'邮箱', width:200, edit: 'text', templet: function(res){
         return '<em>'+ res.email +'</em>'
@@ -71,7 +65,7 @@ layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
       ,{field:'end_time', title:'到期时间', width:120}
       ,{field:'uses_info', title:'使用情况', width:200, sort: true}
       ,{field:'track_info', title:'跟踪情况', width:200}
-	  ,{field:'note', title:'备注'}
+	    ,{field:'note', title:'备注'}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
     ]]
     ,page: true
@@ -94,6 +88,9 @@ layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
       break;
       case 'addCustomer':
         addCustomer();
+      break;
+      case 'search':
+        search();
       break;
     };
   });
@@ -145,6 +142,36 @@ layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
 
     }
   });
+
+  function search()
+  {
+    var keywords = $("#keywords").val();
+
+    table.render({
+      elem: '#test'
+      ,url:'http://qmail.com/index.php/index/User/list?keyword='+keywords
+      ,toolbar: '#toolbarDemo'
+      ,title: '用户数据表'
+      ,cols: [[
+        {field:'id', title:'ID', width:60, fixed: 'left', unresize: true, sort: true}
+        ,{field:'name', title:'姓名', width:120, edit: 'text'}
+        ,{field:'email', title:'邮箱', width:200, edit: 'text', templet: function(res){
+          return '<em>'+ res.email +'</em>'
+        }}
+        ,{field:'mobile', title:'手机号', width:120, edit: 'text', sort: true}
+        ,{field:'weixin', title:'微信号', width:120}
+        ,{field:'qq', title:'QQ', width:120}
+        ,{field:'users_num', title:'用户数', width:80, sort: true}
+        ,{field:'end_time', title:'到期时间', width:120}
+        ,{field:'uses_info', title:'使用情况', width:200, sort: true}
+        ,{field:'track_info', title:'跟踪情况', width:200}
+        ,{field:'note', title:'备注'}
+        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+      ]]
+      ,page: true
+    });
+    $("#keywords").val(keywords);
+  }
 
   function addCustomer()
   {

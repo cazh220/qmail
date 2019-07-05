@@ -3,25 +3,27 @@ namespace app\index\controller;
 
 use think\View;
 use think\Session;
-use app\index\Base;
+use app\index\IpBase;
 
-class User extends Base
+class User extends IpBase
 {
 	public function index()
 	{
-		
-		/*
-		$User = model('User');
-		$list = $Article->getArticleList('关于我们');
-		*/
 		$view = new View();
-		/*
-		$view->assign('article', !empty($list[0]) ? $list[0] : array());
-		$view->assign('system', Session::get('system_info'));
-		$view->assign('qrcode', Session::get('qrcode'));
-		$view->assign('top_left_picture', Session::get('top_left_picture'));
-		*/
+
 		return $view->fetch('index/user');
+	}
+
+	public function list()
+	{
+		$keyword = !empty($_GET['keyword']) ? trim($_GET['keyword']) : '';
+		$page = !empty($_GET['page']) ? intval($_GET['page']) : 1;
+		$limit = !empty($_GET['limit']) ? intval($_GET['limit']) : 10;
+
+		$Customer = model('Customer');
+		$list = $Customer->getCustomerList($keyword, $page, $limit);
+		$data = array('code'=>0, 'msg'=>'ok', 'count'=>$list['count'], 'data'=>$list['data']);
+		exit(json_encode($data));
 	}
 
 	public function checkname()
