@@ -14,10 +14,19 @@ class IpBase
 	public function __construct()
 	{
 		$ip = $this->getIp();
-		//echo $ip;
-		if($ip == '127.0.0.1')
+		$set = array();
+		$data = Db::query("select ip from users");
+		if($data)
 		{
-			echo "<script>alert('没权限')</script>";
+			foreach($data as $key => $val)
+			{
+				$set[] = $val['ip'];
+			}
+		}
+
+		if(!in_array($ip, $set))
+		{
+			echo "<script>window.location.href='/404.html'</script>";
 		}
 	}
 

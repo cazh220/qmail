@@ -72,4 +72,10 @@ class Customer extends Model
 		
 		return true;
 	}
+
+	public function userslist()
+	{
+		$res = Db::query("select ip from users");
+		return $res ? $res : array();
+	}
 }

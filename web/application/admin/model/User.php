@@ -14,6 +14,11 @@ class User extends Model
 		
 	}
 	
+	public function editUser($name='', $ip='', $id=0)
+	{
+		return Db::execute('update users set name = ?, ip = ? where id = ?',[$name,$ip,$id]);
+		
+	}
 	
 	public function getUserList($param = array())
 	{
@@ -31,7 +36,7 @@ class User extends Model
 		return Db::execute('delete from users where id = ?',[$id]);
 	}
 	
-	public function getAdmin($id)
+	public function getUser($id)
 	{
 		$res = Db::query("select *  from users where id = ?", [$id]);
 		return $res ? $res : array();
