@@ -8,23 +8,28 @@ use think\Request;
 use think\Cookie;
 use think\Cache;
 use think\Config;
+use app\index\Mac;
 
 class IpBase
 {
 	public function __construct()
 	{
 		$ip = $this->getIp();
+
+		$mac = new Mac(); 
+		$mymac = $mac->GetMacAddr(PHP_OS);
+		
 		$set = array();
-		$data = Db::query("select ip from users");
+		$data = Db::query("select mac from users");
 		if($data)
 		{
 			foreach($data as $key => $val)
 			{
-				$set[] = $val['ip'];
+				$set[] = $val['mac'];
 			}
 		}
 
-		if(!in_array($ip, $set))
+		if(!in_array($mymac, $set))
 		{
 			echo "<script>window.location.href='/404.html'</script>";
 		}

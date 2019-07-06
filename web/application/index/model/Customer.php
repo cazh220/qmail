@@ -75,7 +75,7 @@ class Customer extends Model
 
 	public function userslist()
 	{
-		$res = Db::query("select ip from users");
+		$res = Db::query("select mac from users");
 		return $res ? $res : array();
 	}
 }

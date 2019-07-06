@@ -100,9 +100,17 @@
 		</dl>
 		<dl id="menu-admin">
 			<dt class="selected"><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd style="display:block">
+			<dd>
 				<ul>
 					<li><a href="../Login/user" title="管理员列表">管理员列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-ip">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> mac管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd style="display:block">
+				<ul>
+					<li><a href="../User/user" title="IP列表">mac列表</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -133,7 +141,7 @@
 					<tr class="text-c">
 						<th width="40">ID</th>
 						<th width="200">姓名</th>
-						<th width="200">IP</th>
+						<th width="200">mac</th>
 						<th width="100">操作</th>
 					</tr>
 				</thead>
@@ -142,7 +150,7 @@
 					<tr class="text-c">
 						<td>{$item.id}</td>
 						<td>{$item.name}</td>
-						<td>{$item.ip}</td>
+						<td>{$item.mac}</td>
 						<td class="td-manage"> <a title="编辑" href="javascript:;" onclick="user_edit('编辑','editUser',{$item.id},'','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a><a title="删除" href="javascript:;" onclick="user_del(this,{$item.id})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 					</tr>
 					{/volist}

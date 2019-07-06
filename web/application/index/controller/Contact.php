@@ -4,6 +4,7 @@ namespace app\index\controller;
 use think\View;
 use think\Session;
 use app\index\Base;
+use app\index\Mac;
 
 class Contact extends Base
 {
@@ -12,7 +13,10 @@ class Contact extends Base
 		$Article = model('Article');
 		$list = $Article->getArticleList('联系我们');
 
-		$ip = $this->getIp();
+		//$ip = $this->getIp();
+		$mac = new Mac(); 
+		$mymac = $mac->GetMacAddr(PHP_OS);
+
 		$set = array();
 		$Customer = model('Customer');
 		$data = $Customer->userslist();
@@ -20,12 +24,12 @@ class Contact extends Base
 		{
 			foreach($data as $key => $val)
 			{
-				$set[] = $val['ip'];
+				$set[] = $val['mac'];
 			}
 		}
 
 		$show = 0;
-		if(in_array($ip, $set))
+		if(in_array($mymac, $set))
 		{
 			$show = 1;
 		}
