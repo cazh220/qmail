@@ -13,9 +13,9 @@ class Contact extends Base
 		$Article = model('Article');
 		$list = $Article->getArticleList('联系我们');
 
-		//$ip = $this->getIp();
-		$mac = new Mac(); 
-		$mymac = $mac->GetMacAddr(PHP_OS);
+		$ip = $this->getIp();
+		//$mac = new Mac(); 
+		//$mymac = $mac->GetMacAddr(PHP_OS);
 
 		$set = array();
 		$Customer = model('Customer');
@@ -24,12 +24,12 @@ class Contact extends Base
 		{
 			foreach($data as $key => $val)
 			{
-				$set[] = $val['mac'];
+				$set[] = $val['ip'];
 			}
 		}
 
 		$show = 0;
-		if(in_array($mymac, $set))
+		if(in_array($ip, $set))
 		{
 			$show = 1;
 		}
