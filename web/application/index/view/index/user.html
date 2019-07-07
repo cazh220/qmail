@@ -49,7 +49,7 @@ layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
   
   table.render({
     elem: '#test'
-    ,url:'http://qmail.com/index.php/index/User/list'
+    ,url:'/index/User/list'
     ,toolbar: '#toolbarDemo'
     ,title: '用户数据表'
     ,cols: [[
@@ -149,7 +149,7 @@ layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
 
     table.render({
       elem: '#test'
-      ,url:'http://qmail.com/index.php/index/User/list?keyword='+keywords
+      ,url:'/index/User/list?keyword='+keywords
       ,toolbar: '#toolbarDemo'
       ,title: '用户数据表'
       ,cols: [[
