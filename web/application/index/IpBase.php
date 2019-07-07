@@ -16,20 +16,19 @@ class IpBase
 	{
 		$ip = $this->getIp();
 
-		$mac = new Mac(); 
-		$mymac = $mac->GetMacAddr(PHP_OS);
-		
+		//$mac = new Mac(); 
+		//$mymac = $mac->GetMacAddr(PHP_OS);
 		$set = array();
-		$data = Db::query("select mac from users");
+		$data = Db::query("select ip from users");
 		if($data)
 		{
 			foreach($data as $key => $val)
 			{
-				$set[] = $val['mac'];
+				$set[] = $val['ip'];
 			}
 		}
 
-		if(!in_array($mymac, $set))
+		if(!in_array($ip, $set))
 		{
 			echo "<script>window.location.href='/404.html'</script>";
 		}

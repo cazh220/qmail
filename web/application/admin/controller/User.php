@@ -11,13 +11,13 @@ class User extends Controller
 	public function add()
 	{
 		$name	= input('name');
-		$mac	= input('mac');
+		$ip	= input('ip');
 
 		$name 	= !empty($name) ? addslashes(trim($name)) : '';
-		$mac 	= !empty($mac) ? addslashes(trim($mac)) : '';
+		$ip 	= !empty($ip) ? addslashes(trim($ip)) : '';
 		
 		$User = model('User');
-		$result 	= $User->addUser($name, $mac);
+		$result 	= $User->addUser($name, $ip);
 		if($result)
 		{
 			exit(json_encode(array('code'=>1, 'msg'=>'ok')));
@@ -31,15 +31,15 @@ class User extends Controller
 	public function edit()
 	{
 		$name	= input('name');
-		$mac	= input('mac');
+		$ip	= input('ip');
 		$id	= input('cid');
 
 		$name 	= !empty($name) ? addslashes(trim($name)) : '';
-		$mac 	= !empty($mac) ? addslashes(trim($mac)) : '';
+		$ip 	= !empty($ip) ? addslashes(trim($ip)) : '';
 		$id 	= !empty($id) ? intval($id) : 0;
 		
 		$User = model('User');
-		$result 	= $User->editUser($name, $mac, $id);
+		$result 	= $User->editUser($name, $ip, $id);
 		if($result)
 		{
 			exit(json_encode(array('code'=>1, 'msg'=>'ok')));

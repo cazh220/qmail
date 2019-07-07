@@ -8,15 +8,15 @@ use think\Paginator;
 class User extends Model
 {
 	
-	public function addUser($name='', $mac='')
+	public function addUser($name='', $ip='')
 	{
-		return Db::execute('insert into users (name,mac)values(?,?)',[$name,$mac]);
+		return Db::execute('insert into users (name,ip)values(?,?)',[$name,$ip]);
 		
 	}
 	
-	public function editUser($name='', $mac='', $id=0)
+	public function editUser($name='', $ip='', $id=0)
 	{
-		return Db::execute('update users set name = ?, mac = ? where id = ?',[$name,$mac,$id]);
+		return Db::execute('update users set name = ?, ip = ? where id = ?',[$name,$ip,$id]);
 		
 	}
 	
