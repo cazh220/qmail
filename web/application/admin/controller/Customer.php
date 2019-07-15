@@ -54,6 +54,8 @@ class Customer extends Controller
 		$uses_info = !empty($_POST['uses_info']) ? trim($_POST['uses_info']) : '';
 		$track_info = !empty($_POST['track_info']) ? trim($_POST['track_info']) : '';
 		$note = !empty($_POST['note']) ? trim($_POST['note']) : '';
+		$tel = !empty($_POST['tel']) ? trim($_POST['tel']) : '';
+		$contact_man = !empty($_POST['contact_man']) ? trim($_POST['contact_man']) : '';
 
 		$data = array(
 			'name'		=> $name,
@@ -65,7 +67,9 @@ class Customer extends Controller
 			'end_time'	=> $end_time,
 			'uses_info'	=> $uses_info,
 			'track_info'=> $track_info,
-			'note'		=> $note
+			'note'		=> $note,
+			'contact_man'=>$contact_man,
+			'tel'		=> $tel
 			);
 		//判断用户是否存在
 		$Customer = model('Customer');
@@ -113,6 +117,8 @@ class Customer extends Controller
 		$uses_info = !empty($_POST['uses_info']) ? trim($_POST['uses_info']) : '';
 		$track_info = !empty($_POST['track_info']) ? trim($_POST['track_info']) : '';
 		$note = !empty($_POST['note']) ? trim($_POST['note']) : '';
+		$tel = !empty($_POST['tel']) ? trim($_POST['tel']) : '';
+		$contact_man = !empty($_POST['contact_man']) ? trim($_POST['contact_man']) : '';
 		$id = !empty($_POST['customer_id']) ? intval($_POST['customer_id']) : 0;
 
 		$data = array(
@@ -125,7 +131,9 @@ class Customer extends Controller
 			'end_time'	=> $end_time,
 			'uses_info'	=> $uses_info,
 			'track_info'=> $track_info,
-			'note'		=> $note
+			'note'		=> $note,
+			'contact_man'=>$contact_man,
+			'tel'		=> $tel
 			);
 		
 		$Customer = model('Customer');

@@ -55,6 +55,18 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">固定电话：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="tel" name="tel">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">联系人：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="contact_man" name="contact_man">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">邮箱：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" placeholder="@" name="email" id="email">
@@ -128,9 +140,7 @@ $(function(){
 				minlength:2,
 				maxlength:16
 			},
-			sex:{
-				required:true,
-			},
+			/*
 			mobile:{
 				required:true,
 				isMobile:true,
@@ -139,10 +149,7 @@ $(function(){
 				required:true,
 				email:true,
 			},
-			uploadfile:{
-				required:true,
-			},
-			
+			*/
 		},
 		onkeyup:false,
 		focusCleanup:true,

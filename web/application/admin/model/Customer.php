@@ -25,7 +25,7 @@ class Customer extends Model
 
 	public function addCustomer($data = array())
 	{
-		return  Db::execute('insert into customer(name,weixin,mobile,qq,email,end_time,users_num,uses_info,track_info,note,create_time)values(?,?,?,?,?,?,?,?,?,?,?)',[$data['name'],$data['weixin'],$data['mobile'],$data['qq'], $data['email'], $data['end_time'], $data['users_num'], $data['uses_info'], $data['track_info'], $data['note'], date("Y-m-d H:i:s")]);
+		return  Db::execute('insert into customer(name,weixin,mobile,qq,email,end_time,users_num,uses_info,track_info,note,create_time,tel,contact_man)values(?,?,?,?,?,?,?,?,?,?,?,?,?)',[$data['name'],$data['weixin'],$data['mobile'],$data['qq'], $data['email'], $data['end_time'], $data['users_num'], $data['uses_info'], $data['track_info'], $data['note'], date("Y-m-d H:i:s"),$data['tel'],$data['contact_man']]);
 	}
 
 	public function getCustomerByName($name='')
