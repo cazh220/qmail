@@ -80,9 +80,9 @@ class User extends IpBase
 			$param = json_decode($_POST['param'], true);
 		}
 
-		if(empty($param['uses_num']))
+		if(empty($param['users_num']))
 		{
-			$param['uses_num'] = 0;
+			$param['users_num'] = 0;
 		}
 		$Customer = model('Customer');
 		$result = $Customer->addCustomer($param);
