@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="{$Think.config.static_url}static/layui/css/layui.css"  media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<div>
+	<div style="text-align:center"><h2>客户信息</h2></div>
+</div> 
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+<script type="text/html" id="toolbarDemo">
+  <button class="layui-btn layui-btn-sm" lay-event="search">搜索</button>
+  <button class="layui-btn layui-btn-sm" lay-event="addCustomer">添加新客户</button>
+  <input style="width:250px; height:30px; float:left; margin-right:20px;" type="text" id="keywords" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入姓名或电话或邮箱" class="layui-input">
+</script>
+ 
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+              
+          
+<script src="{$Think.config.static_url}static/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
+<style type="text/css">
+.content {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.record{
+  color:red;
+}
+</style> 
+<script>
+layui.use(['table', 'jquery', 'element', 'form', 'laydate'], function(){
+  var table = layui.table
+  ,form = layui.form;
+  var $ = layui.$;
+  var element = layui.element;
+  var laydate = layui.laydate;
+  
+  table.render({
+    elem: '#test'
+    ,url:'/index/User/list'
+    ,toolbar: '#toolbarDemo'
+    ,title: '用户数据表'
+    ,cols: [[
+      {field:'id', title:'ID', width:60, fixed: 'left', unresize: true, sort: true}
+      ,{field:'name', title:'姓名', width:120, edit: 'text'}
+      ,{field:'email', title:'邮箱', width:200, edit: 'text', templet: function(res){
+        return '<em>'+ res.email +'</em>'
+      }}
+      ,{field:'mobile', title:'手机号', width:120, edit: 'text', sort: true}
+      ,{field:'tel', title:'固定电话', width:120}
+      ,{field:'contact_man', title:'联系人', width:80}
+      ,{field:'weixin', title:'微信号', width:120}
+      ,{field:'qq', title:'QQ', width:120}
+      ,{field:'users_num', title:'用户数', width:80, sort: true}
+      ,{field:'end_time', title:'到期时间', width:120}
+      ,{field:'uses_info', title:'使用情况', width:200, sort: true}
+      ,{field:'track_info', title:'跟踪情况', width:200}
+	    ,{field:'note', title:'备注'}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+    ]]
+    ,page: true
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选');
+      break;
+      case 'addCustomer':
+        addCustomer();
+      break;
+      case 'search':
+        search();
+      break;
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(test)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event === 'del'){
+      layer.confirm('真的删除此用户', function(index){
+        $.ajax({
+          url:"/index/User/del",
+          type:"GET",
+          data:'id='+obj.data.id,
+          dataType:'json',
+          async: false,
+          success:function(msg){
+            layer.msg(msg.msg);
+            if (msg.code == 0)
+            {
+                return false;
+            }
+            else
+            {
+               obj.del();
+               layer.close(index);
+            }
+          }
+        });
+        
+      });
+    } else if(obj.event === 'edit'){
+        var data = obj.data;
+        var html = '<div class="content"><form class="layui-form" action=""><input type="hidden" name="c_id" value="'+data.id+'"><div class="layui-form-item"><label class="layui-form-label"><span class="record">*</span>姓名</label><div class="layui-input-block"><input type="text" name="name" lay-verify="required|title2" placeholder="必填" autocomplete="off" class="layui-input" value="'+data.name+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>邮箱</label><div class="layui-input-block"><input type="text" name="email" placeholder="邮箱" autocomplete="off" class="layui-input" value="'+data.email+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>手机号</label><div class="layui-input-block"><input type="text" name="mobile" placeholder="手机号" autocomplete="off" class="layui-input" value="'+data.mobile+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>固定电话</label><div class="layui-input-block"><input type="text" name="tel" placeholder="固定电话" autocomplete="off" class="layui-input" value="'+data.tel+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>联系人</label><div class="layui-input-block"><input type="text" name="contact_man" placeholder="联系人" autocomplete="off" class="layui-input" value="'+data.contact_man+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>微信号</label><div class="layui-input-block"><input type="text" name="weixin"  placeholder="选填" autocomplete="off" class="layui-input" value="'+data.weixin+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>QQ</label><div class="layui-input-block"><input type="text" name="qq" placeholder="选填" autocomplete="off" class="layui-input" value="'+data.qq+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>用户数</label><div class="layui-input-block"><input type="text" name="users_num" placeholder="选填" autocomplete="off" class="layui-input" value="'+data.users_num+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>到期时间</label><div class="layui-input-block"><input type="text" id="end_time" name="end_time"  placeholder="选填" autocomplete="off" class="layui-input" value="'+data.end_time+'"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>使用情况</label><div class="layui-input-block"><textarea name="uses_info" placeholder="请输入使用情况" class="layui-textarea">'+data.uses_info+'</textarea></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>跟踪情况</label><div class="layui-input-block"><textarea name="track_info" placeholder="请输入跟踪情况" class="layui-textarea">'+data.track_info
+        +'</textarea></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>备注</label><div class="layui-input-block"><textarea name="note" placeholder="请输入备注" class="layui-textarea">'+data.note+'</textarea></div></div><div class="layui-form-item"><div class="layui-input-block"><button class="layui-btn" lay-submit lay-filter="customerEditForm">确定</button></div></div></form></div>';
+          layer.open({
+            type: 1 //Page层类型
+            ,area: ['700px', '500px']
+            ,title: '编辑客户信息'
+            ,shade: 0.6 //遮罩透明度
+            ,maxmin: true //允许全屏最小化
+            ,anim: 1 //0-6的动画形式，-1不开启
+            ,content: html
+          }); 
+          laydate.render({
+            elem: '#end_time' //指定元素
+          });
+          form.render(); 
+
+    }
+  });
+
+  function search()
+  {
+    var keywords = $("#keywords").val();
+
+    table.render({
+      elem: '#test'
+      ,url:'/index/User/list?keyword='+keywords
+      ,toolbar: '#toolbarDemo'
+      ,title: '用户数据表'
+      ,cols: [[
+        {field:'id', title:'ID', width:60, fixed: 'left', unresize: true, sort: true}
+        ,{field:'name', title:'姓名', width:120, edit: 'text'}
+        ,{field:'email', title:'邮箱', width:200, edit: 'text', templet: function(res){
+          return '<em>'+ res.email +'</em>'
+        }}
+        ,{field:'mobile', title:'手机号', width:120, edit: 'text', sort: true}
+        ,{field:'tel', title:'固定电话', width:120}
+        ,{field:'contact_man', title:'联系人', width:80}
+        ,{field:'weixin', title:'微信号', width:120}
+        ,{field:'qq', title:'QQ', width:120}
+        ,{field:'users_num', title:'用户数', width:80, sort: true}
+        ,{field:'end_time', title:'到期时间', width:120}
+        ,{field:'uses_info', title:'使用情况', width:200, sort: true}
+        ,{field:'track_info', title:'跟踪情况', width:200}
+        ,{field:'note', title:'备注'}
+        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+      ]]
+      ,page: true
+    });
+    $("#keywords").val(keywords);
+  }
+
+  function addCustomer()
+  {
+    var html = '<div class="content"><form class="layui-form" action=""><div class="layui-form-item"><label class="layui-form-label"><span class="record">*</span>姓名</label><div class="layui-input-block"><input type="text" name="name" lay-verify="required|title" placeholder="必填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>邮箱</label><div class="layui-input-block"><input type="text" name="email" placeholder="邮箱" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>手机号</label><div class="layui-input-block"><input type="text" name="mobile" placeholder="手机号" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>固定电话</label><div class="layui-input-block"><input type="text" name="tel" placeholder="固定电话" autocomplete="off" class="layui-input" value=""></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>联系人</label><div class="layui-input-block"><input type="text" name="contact_man" placeholder="联系人" autocomplete="off" class="layui-input" value=""></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>微信号</label><div class="layui-input-block"><input type="text" name="weixin"  placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>QQ</label><div class="layui-input-block"><input type="text" name="qq" placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>用户数</label><div class="layui-input-block"><input type="text" name="users_num" placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>到期时间</label><div class="layui-input-block"><input type="text" id="end_time" name="end_time" placeholder="选填" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>使用情况</label><div class="layui-input-block"><textarea name="uses_info" placeholder="请输入使用情况" class="layui-textarea"></textarea></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>跟踪情况</label><div class="layui-input-block"><textarea name="track_info" placeholder="请输入跟踪情况" class="layui-textarea"></textarea></div></div><div class="layui-form-item"><label class="layui-form-label"><span class="record"></span>备注</label><div class="layui-input-block"><textarea name="note" placeholder="请输入备注" class="layui-textarea"></textarea></div></div><div class="layui-form-item"><div class="layui-input-block"><button class="layui-btn" lay-submit lay-filter="customerForm">确定</button></div></div></form></div>';
+    layer.open({
+      type: 1 //Page层类型
+      ,area: ['700px', '500px']
+      ,title: '添加成员'
+      ,shade: 0.6 //遮罩透明度
+      ,maxmin: true //允许全屏最小化
+      ,anim: 1 //0-6的动画形式，-1不开启
+      ,content: html
+    }); 
+    laydate.render({
+      elem: '#end_time' //指定元素
+    });
+    form.render(); 
+  }
+
+  form.on('submit(customerForm)', function(data){
+      //layer.msg(JSON.stringify(data.field));
+      $.ajax({
+        url:"/index/User/add",
+        type:"POST",
+        data:'param='+JSON.stringify(data.field),
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          layer.msg(msg.msg);
+          if (msg.code == 0)
+          {
+              return false;
+          }
+          else
+          {
+             location.reload();
+          }
+        }
+      });
+  });
+
+  form.on('submit(customerEditForm)', function(data){
+      //layer.msg(JSON.stringify(data.field));
+      $.ajax({
+        url:"/index/User/Edit",
+        type:"POST",
+        data:'param='+JSON.stringify(data.field),
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          layer.msg(msg.msg);
+          if (msg.code == 0)
+          {
+              return false;
+          }
+          else
+          {
+             location.reload();
+          }
+        }
+      });
+  });
+
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 1){
+        return '姓名不为空';
+      }
+
+      var result = '';
+      $.ajax({
+        url:"/index/User/checkname",
+        type:"GET",
+        data:'name='+value,
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          if (msg.code == 0)
+          {
+              result = msg.msg
+          }
+          
+        }
+      });
+      return result;
+    },
+    tel:function(mobile){
+      if(mobile.length < 1){
+        return '手机号不为空';
+      }
+	  
+  	  var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+  	  if (!myreg.test(mobile)) {
+  		return '手机号不正确';
+  	  }
+
+      var result = '';
+      $.ajax({
+        url:"/index/User/checkmobile",
+        type:"GET",
+        data:'mobile='+mobile,
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          if (msg.code == 0)
+          {
+              result = msg.msg
+          }
+          
+        }
+      });
+      return result;
+    },
+    title2: function(value){
+      if(value.length < 1){
+        return '姓名不为空';
+      }
+
+      var result = '';
+      $.ajax({
+        url:"/index/User/checkname2",
+        type:"GET",
+        data:'name='+value,
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          if (msg.code == 0)
+          {
+              result = msg.msg
+          }
+          
+        }
+      });
+      return result;
+    },
+    tel2:function(mobile){
+      if(mobile.length < 1){
+        return '手机号不为空';
+      }
+    
+      var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(mobile)) {
+      return '手机号不正确';
+      }
+
+      var result = '';
+      $.ajax({
+        url:"/index/User/checkmobile2",
+        type:"GET",
+        data:'mobile='+mobile,
+        dataType:'json',
+        async: false,
+        success:function(msg){
+          if (msg.code == 0)
+          {
+              result = msg.msg
+          }
+          
+        }
+      });
+      return result;
+    }
+
+
+  });
+});
+</script>
+
+</body>
+</html>
