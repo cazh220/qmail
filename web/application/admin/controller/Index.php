@@ -13,7 +13,7 @@ class Index extends Controller
 		if(!Session::get('admin_id'))
 		{
 			header("Content-type:text/html;charset=utf-8");
-            exit("<script>alert('请登录');window.location.href='../login/login?".time()."';</script>");
+            exit("<script>alert('请登录');window.location.href='../admin/login/login?".time()."';</script>");
 		}
 		$System = model('System');
 		$list = $System->getSystem();
